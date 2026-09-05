@@ -22,6 +22,9 @@ body{font-family:var(--sans);background:var(--cream);color:var(--txt);margin:0}
 .req-sub{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.6}
 .req-sub a{color:var(--brand)}
 .req-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.badge{font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:5px 11px;border-radius:20px;white-space:nowrap;font-weight:500;flex-shrink:0}
+.badge.approved{background:rgba(76,175,125,.15);color:#2e8a5c}
+.badge.rejected{background:rgba(224,104,90,.12);color:#b8493a}
 .creditinput{width:64px;padding:8px;border:1px solid rgba(43,95,170,.2);border-radius:2px;font-family:var(--sans);font-size:13px;text-align:center}
 .btnok{background:var(--ok);color:var(--white);border:none;padding:9px 16px;border-radius:2px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
 .btnrej{background:none;color:var(--err);border:1px solid var(--err);padding:9px 16px;border-radius:2px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
@@ -62,6 +65,16 @@ body{font-family:var(--sans);background:var(--cream);color:var(--txt);margin:0}
     </div>
     <div id="couponLookupMsg" style="font-size:12px;margin-top:10px"></div>
   </div>
+
+  <div class="card">
+    <h2>History — Visit Claims</h2>
+    <div id="visitHistoryList"><div class="empty">Nothing yet.</div></div>
+  </div>
+
+  <div class="card">
+    <h2>History — Redemptions</h2>
+    <div id="redemptionHistoryList"><div class="empty">Nothing yet.</div></div>
+  </div>
 </div>
 
 <div class="notauth" id="notauth" style="display:none">
@@ -72,7 +85,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--txt);margin:0}
 <script type="module">
 import { auth, db, creditsForProof, couponExpiryDate, isCouponExpired, creditGrantExpiryDate, toJsDate } from "/test-pas/portal/firebase-init.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { collection, query, where, orderBy, onSnapshot, getDocs, doc, updateDoc, addDoc, increment, serverTimestamp, writeBatch } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { collection, query, where, orderBy, limit, onSnapshot, getDocs, doc, updateDoc, addDoc, increment, serverTimestamp, writeBatch } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 let staffUid = null;
 
@@ -81,6 +94,8 @@ onAuthStateChanged(auth, (user) => {
   staffUid = user.uid;
   loadVisits();
   loadRedemptions();
+  loadVisitHistory();
+  loadRedemptionHistory();
 });
 
 window.doLogout = function(){ signOut(auth).then(() => location.href = '/test-pas/portal/'); };
@@ -161,6 +176,52 @@ function loadRedemptions(){
   }, () => {});
 }
 
+function loadVisitHistory(){
+  const list = document.getElementById('visitHistoryList');
+  const q = query(collection(db, 'visits'), orderBy('submittedAt', 'desc'), limit(100));
+  onSnapshot(q, (snap) => {
+    const rows = snap.docs.filter((d) => d.data().status !== 'pending');
+    if (rows.length === 0) { list.innerHTML = '<div class="empty">Nothing yet.</div>'; return; }
+    list.innerHTML = '';
+    rows.forEach((d) => {
+      const v = d.data();
+      const date = v.reviewedAt ? toJsDate(v.reviewedAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+      const creditsText = v.status === 'approved' ? ' &middot; +' + (v.creditsAwarded || 0) + ' credits' : '';
+      const row = document.createElement('div');
+      row.className = 'req';
+      row.innerHTML =
+        '<div class="req-main"><div class="req-title">' + escapeHtml(v.name) + ' &middot; ' + escapeHtml(v.phone) + ' &middot; ' + typeLabel(v.proofType) + creditsText + '</div>' +
+          '<div class="req-sub">' + date + '</div>' +
+        '</div>' +
+        '<span class="badge ' + (v.status === 'approved' ? 'approved' : 'rejected') + '">' + v.status + '</span>';
+      list.appendChild(row);
+    });
+  }, () => {});
+}
+
+function loadRedemptionHistory(){
+  const list = document.getElementById('redemptionHistoryList');
+  const q = query(collection(db, 'redemptionRequests'), orderBy('createdAt', 'desc'), limit(100));
+  onSnapshot(q, (snap) => {
+    const rows = snap.docs.filter((d) => d.data().status !== 'pending');
+    if (rows.length === 0) { list.innerHTML = '<div class="empty">Nothing yet.</div>'; return; }
+    list.innerHTML = '';
+    rows.forEach((d) => {
+      const r = d.data();
+      const date = r.reviewedAt ? toJsDate(r.reviewedAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+      const codeText = r.couponCode ? ' &middot; Code: <strong>' + escapeHtml(r.couponCode) + '</strong>' : '';
+      const row = document.createElement('div');
+      row.className = 'req';
+      row.innerHTML =
+        '<div class="req-main"><div class="req-title">' + escapeHtml(r.name) + ' &middot; ' + escapeHtml(r.phone) + ' &middot; ' + (Number(r.creditsCost) || 0) + ' credits' + codeText + '</div>' +
+          '<div class="req-sub">' + date + '</div>' +
+        '</div>' +
+        '<span class="badge ' + (r.status === 'approved' ? 'approved' : 'rejected') + '">' + r.status + '</span>';
+      list.appendChild(row);
+    });
+  }, () => {});
+}
+
 function randomCode(){
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   let code = 'PAS-';
@@ -184,7 +245,7 @@ window.approveVisit = async function(visitId, uid){
   await addDoc(collection(db, 'creditGrants'), {
     uid, amount: credits, remaining: credits,
     earnedAt: now, expiresAt: creditGrantExpiryDate(now),
-    source: 'visit', sourceId: visitId
+    source: 'visit', sourceId: visitId, expiredFlag: false
   });
   await updateDoc(doc(db, 'visits', visitId), { status: 'approved', creditsAwarded: credits, reviewedAt: serverTimestamp(), reviewedBy: staffUid });
   await updateDoc(doc(db, 'customers', uid), { credits: increment(credits) });

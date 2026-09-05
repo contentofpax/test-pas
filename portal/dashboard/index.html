@@ -148,7 +148,7 @@ nav.sc{box-shadow:0 4px 24px rgba(0,0,0,.3)}
 
   <div class="card">
     <h2 class="sectitle" style="margin-bottom:6px;font-size:22px">Your <em>coupons.</em></h2>
-    <p class="desc" style="margin-bottom:16px">Coupons are valid for 6 months from the day they're generated.</p>
+    <p class="desc" style="margin-bottom:16px">Coupons are valid for 6 months from the day they're generated. Only one coupon can be redeemed per bill.</p>
     <div id="couponsList"><div class="empty">No coupons yet — redeem credits above to get one.</div></div>
   </div>
 
@@ -181,7 +181,7 @@ function toggleMenu(){const m=document.getElementById('mmenu');const h=document.
 </script>
 
 <script type="module">
-import { auth, db, storage, CAFE_LAT, CAFE_LNG, CAFE_RADIUS_METERS, MIN_REDEEM_CREDITS, creditsForProof, STAFF_PHONES, isCouponExpired, toJsDate, distanceMeters } from "/test-pas/portal/firebase-init.js";
+import { auth, db, storage, CAFE_LAT, CAFE_LNG, CAFE_RADIUS_METERS, MIN_REDEEM_CREDITS, MAX_REDEEM_CREDITS, creditsForProof, STAFF_PHONES, isCouponExpired, toJsDate, distanceMeters } from "/test-pas/portal/firebase-init.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { doc, getDoc, setDoc, collection, addDoc, getDocs, query, where, orderBy, onSnapshot, serverTimestamp, increment, writeBatch } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
@@ -191,7 +191,7 @@ let currentName = '';
 let currentCredits = 0;
 let currentGeo = null;
 
-document.getElementById('redeemHint').textContent = 'Redeem ' + MIN_REDEEM_CREDITS + '+ credits, 1:1 for rupees off your next bill';
+document.getElementById('redeemHint').textContent = 'Redeem ' + MIN_REDEEM_CREDITS + '-' + MAX_REDEEM_CREDITS + ' credits, 1:1 for rupees off your next bill';
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) { location.href = '/test-pas/portal/?next=' + encodeURIComponent(location.pathname); return; }
@@ -259,7 +259,7 @@ async function processExpiredGrants(uid){
     const g = docSnap.data();
     if (g.remaining > 0 && toJsDate(g.expiresAt) < now) {
       totalExpired += g.remaining;
-      batch.update(docSnap.ref, { remaining: 0 });
+      batch.update(docSnap.ref, { remaining: 0, expiredFlag: true });
       touched = true;
     }
   });
@@ -273,6 +273,11 @@ async function processExpiredGrants(uid){
 
 async function loadVisits(uid){
   const list = document.getElementById('visitsList');
+  const gq = query(collection(db, 'creditGrants'), where('uid', '==', uid));
+  const gsnap = await getDocs(gq);
+  const grantsBySource = {};
+  gsnap.forEach((g) => { const gd = g.data(); if (gd.sourceId) grantsBySource[gd.sourceId] = gd; });
+
   const q = query(collection(db, 'visits'), where('uid', '==', uid), orderBy('submittedAt', 'desc'));
   onSnapshot(q, (snap) => {
     if (snap.empty) { list.innerHTML = '<div class="empty">No claims yet.</div>'; return; }
@@ -281,9 +286,18 @@ async function loadVisits(uid){
       const v = d.data();
       const date = v.submittedAt ? v.submittedAt.toDate().toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' }) : '';
       const typeLabel = { google_review: 'Google Review', instagram_post: 'Instagram Post', instagram_story: 'Instagram Story', bill_amount: 'Bill Amount' }[v.proofType] || v.proofType;
+      let statusText = v.status;
+      let badgeClass = v.status;
+      if (v.status === 'approved') {
+        const g = grantsBySource[d.id];
+        if (g && g.remaining <= 0) {
+          if (g.expiredFlag) { statusText = 'expired'; badgeClass = 'rejected'; }
+          else { statusText = 'redeemed'; badgeClass = 'redeemed'; }
+        }
+      }
       const row = document.createElement('div');
       row.className = 'list-item';
-      row.innerHTML = '<div class="li-main"><div class="li-title">' + typeLabel + '</div><div class="li-sub">' + date + (v.status === 'approved' ? ' · +' + (v.creditsAwarded||0) + ' credits' : '') + '</div></div><span class="badge ' + v.status + '">' + v.status + '</span>';
+      row.innerHTML = '<div class="li-main"><div class="li-title">' + typeLabel + '</div><div class="li-sub">' + date + (v.status === 'approved' ? ' · +' + (v.creditsAwarded||0) + ' credits' : '') + '</div></div><span class="badge ' + badgeClass + '">' + statusText + '</span>';
       list.appendChild(row);
     });
   }, () => { list.innerHTML = '<div class="empty">Couldn’t load claims right now.</div>'; });
@@ -378,6 +392,10 @@ window.requestRedeem = async function(){
   const amount = parseInt(document.getElementById('redeemAmount').value, 10);
   if (!amount || amount < MIN_REDEEM_CREDITS) {
     alert('Please enter at least ' + MIN_REDEEM_CREDITS + ' credits.');
+    return;
+  }
+  if (amount > MAX_REDEEM_CREDITS) {
+    alert('You can redeem at most ' + MAX_REDEEM_CREDITS + ' credits per coupon.');
     return;
   }
   if (amount > currentCredits) {
