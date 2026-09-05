@@ -49,6 +49,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--txt);margin:0}
 
   <div class="card">
     <h2>Pending Redemption Requests</h2>
+    <div id="redemptionResult" style="display:none;background:rgba(76,175,125,.1);border:1px solid rgba(76,175,125,.35);color:#2e8a5c;padding:14px 16px;border-radius:4px;margin-bottom:16px;font-size:14px"></div>
     <div id="redemptionsList"><div class="empty">Nothing pending.</div></div>
   </div>
 
@@ -189,9 +190,20 @@ window.rejectVisit = async function(visitId){
 
 window.approveRedemption = async function(reqId, uid, cost){
   const code = await genUniqueCode();
-  await addDoc(collection(db, 'coupons'), { uid, code, creditsCost: cost, status: 'available', createdAt: serverTimestamp() });
+  const couponRef = await addDoc(collection(db, 'coupons'), { uid, code, creditsCost: cost, status: 'available', createdAt: serverTimestamp() });
   await updateDoc(doc(db, 'customers', uid), { credits: increment(-cost) });
   await updateDoc(doc(db, 'redemptionRequests', reqId), { status: 'approved', reviewedAt: serverTimestamp(), reviewedBy: staffUid, couponCode: code });
+
+  const box = document.getElementById('redemptionResult');
+  box.innerHTML = 'Approved — ₹' + cost + ' off. Code: <strong style="font-size:18px;letter-spacing:.05em">' + code + '</strong> &nbsp; ' +
+    '<button class="btnok" style="margin-left:10px" onclick="markRedeemedNow(\'' + couponRef.id + '\', this)">Mark Redeemed Now (applying to this bill)</button>';
+  box.style.display = 'block';
+};
+
+window.markRedeemedNow = async function(couponId, btn){
+  await updateDoc(doc(db, 'coupons', couponId), { status: 'redeemed', redeemedAt: serverTimestamp(), redeemedBy: staffUid });
+  btn.disabled = true;
+  btn.textContent = 'Marked redeemed ✓';
 };
 
 window.rejectRedemption = async function(reqId){
