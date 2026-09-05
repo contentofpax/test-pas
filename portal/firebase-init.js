@@ -25,7 +25,7 @@ export const STAFF_PHONES = ['+917869196341'];
 export const CAFE_LAT = 15.0422837;
 export const CAFE_LNG = 73.9883789;
 export const CAFE_RADIUS_METERS = 300;
-export const MIN_REDEEM_CREDITS = 200; // minimum redeemable amount; 1 credit = ₹1, no upper cap beyond balance
+export const MIN_REDEEM_CREDITS = 100; // minimum redeemable amount; 1 credit = ₹1, no upper cap beyond balance
 export const COUPON_VALIDITY_MONTHS = 6; // coupons expire this many months after being generated
 
 export function couponExpiryDate(fromDate) {
@@ -43,9 +43,9 @@ export function isCouponExpired(coupon) {
 export const CREDIT_RULES = {
   google_review: 10,
   instagram_story: 20,
-  instagram_post: 50
+  instagram_post: 30
 };
-export const BILL_CREDIT_RATE = 0.10; // 10% of bill amount, in credits
+export const BILL_CREDIT_RATE = 0.01; // 1 credit per ₹100 spent
 
 export function creditsForProof(proofType, billAmount) {
   if (proofType === 'bill_amount') {
