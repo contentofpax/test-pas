@@ -153,11 +153,20 @@ function loadRedemptions(){
   }, () => {});
 }
 
-function genCode(){
+function randomCode(){
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   let code = 'PAS-';
   for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
   return code;
+}
+
+async function genUniqueCode(){
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const code = randomCode();
+    const existing = await getDocs(query(collection(db, 'coupons'), where('code', '==', code)));
+    if (existing.empty) return code;
+  }
+  throw new Error('Could not generate a unique code, please try again.');
 }
 
 window.approveVisit = async function(visitId, uid){
@@ -172,7 +181,7 @@ window.rejectVisit = async function(visitId){
 };
 
 window.approveRedemption = async function(reqId, uid, cost){
-  const code = genCode();
+  const code = await genUniqueCode();
   await addDoc(collection(db, 'coupons'), { uid, code, creditsCost: cost, status: 'available', createdAt: serverTimestamp() });
   await updateDoc(doc(db, 'customers', uid), { credits: increment(-cost) });
   await updateDoc(doc(db, 'redemptionRequests', reqId), { status: 'approved', reviewedAt: serverTimestamp(), reviewedBy: staffUid, couponCode: code });
