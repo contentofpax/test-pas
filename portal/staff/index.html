@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Staff — Approvals — PAS Specialty Coffee</title>
 <meta name="robots" content="noindex,nofollow">
-<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="icon" type="image/png" href="/test-pas/favicon.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -66,20 +66,20 @@ body{font-family:var(--sans);background:var(--cream);color:var(--txt);margin:0}
 </div>
 
 <script type="module">
-import { auth, db } from "/portal/firebase-init.js";
+import { auth, db } from "/test-pas/portal/firebase-init.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { collection, query, where, orderBy, onSnapshot, getDocs, doc, updateDoc, addDoc, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 let staffUid = null;
 
 onAuthStateChanged(auth, (user) => {
-  if (!user) { location.href = '/portal/?next=' + encodeURIComponent(location.pathname); return; }
+  if (!user) { location.href = '/test-pas/portal/?next=' + encodeURIComponent(location.pathname); return; }
   staffUid = user.uid;
   loadVisits();
   loadRedemptions();
 });
 
-window.doLogout = function(){ signOut(auth).then(() => location.href = '/portal/'); };
+window.doLogout = function(){ signOut(auth).then(() => location.href = '/test-pas/portal/'); };
 
 function typeLabel(t){
   return { google_review: 'Google Review', instagram_post: 'Instagram Post', instagram_story: 'Instagram Story' }[t] || escapeHtml(t);

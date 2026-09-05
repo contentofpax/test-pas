@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5G8FXY3MS"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-Z5G8FXY3MS');</script><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>My Account — PAS Specialty Coffee</title>
 <meta name="robots" content="noindex">
-<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="icon" type="image/png" href="/test-pas/favicon.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -82,12 +82,12 @@ nav.sc{box-shadow:0 4px 24px rgba(0,0,0,.3)}
 .redeem-row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 </style></head><body>
 <nav id="nav">
-  <a href="/" class="nlogo"><img src="/logo.png" alt="PAS"></a>
-  <ul class="nlinks"><li><a href="/">Home</a></li><li><a href="/menu/">Menu</a></li><li><a href="/gallery/">Gallery</a></li><li><a href="/contact/">Contact</a></li><li><a href="/portal/dashboard/" class="act">My Account</a></li><li><a href="/reservations/" class="ncta">Reserve a Table</a></li></ul>
+  <a href="/test-pas/" class="nlogo"><img src="/test-pas/logo.png" alt="PAS"></a>
+  <ul class="nlinks"><li><a href="/test-pas/">Home</a></li><li><a href="/test-pas/menu/">Menu</a></li><li><a href="/test-pas/gallery/">Gallery</a></li><li><a href="/test-pas/contact/">Contact</a></li><li><a href="/test-pas/portal/dashboard/" class="act">My Account</a></li><li><a href="/test-pas/reservations/" class="ncta">Reserve a Table</a></li></ul>
   <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
-<div class="mobile-menu" id="mmenu"><ul><li><a href="/" onclick="toggleMenu()">Home</a></li><li><a href="/menu/" onclick="toggleMenu()">Menu</a></li><li><a href="/gallery/" onclick="toggleMenu()">Gallery</a></li><li><a href="/contact/" onclick="toggleMenu()">Contact</a></li><li><a href="/portal/dashboard/" onclick="toggleMenu()">My Account</a></li>
-  <li><a href="/reservations/" class="mmcta" onclick="toggleMenu()">Reserve a Table</a></li>
+<div class="mobile-menu" id="mmenu"><ul><li><a href="/test-pas/" onclick="toggleMenu()">Home</a></li><li><a href="/test-pas/menu/" onclick="toggleMenu()">Menu</a></li><li><a href="/test-pas/gallery/" onclick="toggleMenu()">Gallery</a></li><li><a href="/test-pas/contact/" onclick="toggleMenu()">Contact</a></li><li><a href="/test-pas/portal/dashboard/" onclick="toggleMenu()">My Account</a></li>
+  <li><a href="/test-pas/reservations/" class="mmcta" onclick="toggleMenu()">Reserve a Table</a></li>
 </ul></div>
 
 <div class="dwrap">
@@ -143,12 +143,12 @@ nav.sc{box-shadow:0 4px 24px rgba(0,0,0,.3)}
 </div>
 
 <footer style="background:var(--blue);padding:40px 8vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;border-top:1px solid rgba(255,255,255,.08)">
-  <div><img src="/logofooter.png" alt="PAS" style="height:22px;width:auto;opacity:.65"></div>
+  <div><img src="/test-pas/logofooter.png" alt="PAS" style="height:22px;width:auto;opacity:.65"></div>
   <ul style="display:flex;gap:20px;list-style:none;flex-wrap:wrap">
-    <li><a href="/" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none">Home</a></li>
-    <li><a href="/menu/" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none">Menu</a></li>
-    <li><a href="/reservations/" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none">Reserve</a></li>
-    <li><a href="/contact/" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none">Contact</a></li>
+    <li><a href="/test-pas/" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none">Home</a></li>
+    <li><a href="/test-pas/menu/" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none">Menu</a></li>
+    <li><a href="/test-pas/reservations/" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none">Reserve</a></li>
+    <li><a href="/test-pas/contact/" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none">Contact</a></li>
   </ul>
   <div style="font-size:11px;color:rgba(255,255,255,.22)">© 2026 Pax Edutainment Pvt. Ltd. · Agonda, Goa</div>
 </footer>
@@ -159,7 +159,7 @@ function toggleMenu(){const m=document.getElementById('mmenu');const h=document.
 </script>
 
 <script type="module">
-import { auth, db, storage, CAFE_LAT, CAFE_LNG, CAFE_RADIUS_METERS, REDEEM_COST, distanceMeters } from "/portal/firebase-init.js";
+import { auth, db, storage, CAFE_LAT, CAFE_LNG, CAFE_RADIUS_METERS, REDEEM_COST, distanceMeters } from "/test-pas/portal/firebase-init.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { doc, getDoc, collection, addDoc, query, where, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
@@ -168,11 +168,11 @@ let currentUser = null;
 let currentGeo = null;
 
 onAuthStateChanged(auth, async (user) => {
-  if (!user) { location.href = '/portal/?next=' + encodeURIComponent(location.pathname); return; }
+  if (!user) { location.href = '/test-pas/portal/?next=' + encodeURIComponent(location.pathname); return; }
   currentUser = user;
   const snap = await getDoc(doc(db, 'customers', user.uid));
   if (!snap.exists() || !snap.data().name || !snap.data().email) {
-    location.href = '/portal/?next=' + encodeURIComponent(location.pathname);
+    location.href = '/test-pas/portal/?next=' + encodeURIComponent(location.pathname);
     return;
   }
   document.getElementById('custName').textContent = snap.data().name.split(' ')[0];
@@ -186,7 +186,7 @@ onAuthStateChanged(auth, async (user) => {
   checkGeo();
 });
 
-window.doLogout = function(){ signOut(auth).then(() => location.href = '/portal/'); };
+window.doLogout = function(){ signOut(auth).then(() => location.href = '/test-pas/portal/'); };
 
 function checkGeo(){
   const el = document.getElementById('geoStatus');
@@ -257,7 +257,7 @@ window.submitClaim = async function(){
   try {
     let proofImageUrl = null;
     if (file) {
-      const path = 'proofs/' + currentUser.uid + '/' + Date.now() + '-' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+      const path = 'proofs/' + currentUser.uid + '/test-pas/' + Date.now() + '-' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
       const fileRef = ref(storage, path);
       await uploadBytes(fileRef, file);
       proofImageUrl = await getDownloadURL(fileRef);

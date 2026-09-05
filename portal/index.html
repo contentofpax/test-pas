@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head><script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5G8FXY3MS"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-Z5G8FXY3MS');</script><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>My Account — PAS Specialty Coffee</title>
 <meta name="description" content="Sign in to your PAS Specialty Coffee account to track visits, earn credits, and redeem coupons.">
 <meta name="robots" content="noindex">
-<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="icon" type="image/png" href="/test-pas/favicon.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -59,12 +59,12 @@ footer{background:var(--blue);padding:40px 8vw;display:flex;justify-content:spac
 .flogo img{height:22px;width:auto;opacity:.65}.fnav{display:flex;gap:20px;list-style:none;flex-wrap:wrap}.fnav a{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}.fnav a:hover{color:var(--gold)}.fcopy{font-size:11px;color:rgba(255,255,255,.22)}
 </style></head><body>
 <nav id="nav">
-  <a href="/" class="nlogo"><img src="/logo.png" alt="PAS"></a>
-  <ul class="nlinks"><li><a href="/">Home</a></li><li><a href="/menu/">Menu</a></li><li><a href="/gallery/">Gallery</a></li><li><a href="/contact/">Contact</a></li><li><a href="/portal/" class="act">My Account</a></li><li><a href="/reservations/" class="ncta">Reserve a Table</a></li></ul>
+  <a href="/test-pas/" class="nlogo"><img src="/test-pas/logo.png" alt="PAS"></a>
+  <ul class="nlinks"><li><a href="/test-pas/">Home</a></li><li><a href="/test-pas/menu/">Menu</a></li><li><a href="/test-pas/gallery/">Gallery</a></li><li><a href="/test-pas/contact/">Contact</a></li><li><a href="/test-pas/portal/" class="act">My Account</a></li><li><a href="/test-pas/reservations/" class="ncta">Reserve a Table</a></li></ul>
   <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
-<div class="mobile-menu" id="mmenu"><ul><li><a href="/" onclick="toggleMenu()">Home</a></li><li><a href="/menu/" onclick="toggleMenu()">Menu</a></li><li><a href="/gallery/" onclick="toggleMenu()">Gallery</a></li><li><a href="/contact/" onclick="toggleMenu()">Contact</a></li><li><a href="/portal/" onclick="toggleMenu()">My Account</a></li>
-  <li><a href="/reservations/" class="mmcta" onclick="toggleMenu()">Reserve a Table</a></li>
+<div class="mobile-menu" id="mmenu"><ul><li><a href="/test-pas/" onclick="toggleMenu()">Home</a></li><li><a href="/test-pas/menu/" onclick="toggleMenu()">Menu</a></li><li><a href="/test-pas/gallery/" onclick="toggleMenu()">Gallery</a></li><li><a href="/test-pas/contact/" onclick="toggleMenu()">Contact</a></li><li><a href="/test-pas/portal/" onclick="toggleMenu()">My Account</a></li>
+  <li><a href="/test-pas/reservations/" class="mmcta" onclick="toggleMenu()">Reserve a Table</a></li>
 </ul></div>
 
 <div class="pwrap">
@@ -119,8 +119,8 @@ footer{background:var(--blue);padding:40px 8vw;display:flex;justify-content:spac
 </div>
 
 <footer>
-  <div class="flogo"><img src="/logofooter.png" alt="PAS"></div>
-  <ul class="fnav"><li><a href="/">Home</a></li><li><a href="/menu/">Menu</a></li><li><a href="/gallery/">Gallery</a></li><li><a href="/reservations/">Reserve</a></li><li><a href="/contact/">Contact</a></li></ul>
+  <div class="flogo"><img src="/test-pas/logofooter.png" alt="PAS"></div>
+  <ul class="fnav"><li><a href="/test-pas/">Home</a></li><li><a href="/test-pas/menu/">Menu</a></li><li><a href="/test-pas/gallery/">Gallery</a></li><li><a href="/test-pas/reservations/">Reserve</a></li><li><a href="/test-pas/contact/">Contact</a></li></ul>
   <div class="fcopy">© 2026 Pax Edutainment Pvt. Ltd. · Agonda, Goa</div>
 </footer>
 
@@ -130,7 +130,7 @@ function toggleMenu(){const m=document.getElementById('mmenu');const h=document.
 </script>
 
 <script type="module">
-import { auth, db } from "/portal/firebase-init.js";
+import { auth, db } from "/test-pas/portal/firebase-init.js";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
@@ -139,7 +139,7 @@ let confirmationResult = null;
 let resendInterval = null;
 
 const params = new URLSearchParams(location.search);
-const nextUrl = params.get('next') || '/portal/dashboard/';
+const nextUrl = params.get('next') || '/test-pas/portal/dashboard/';
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) return;
