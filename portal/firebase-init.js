@@ -27,17 +27,29 @@ export const CAFE_LNG = 73.9883789;
 export const CAFE_RADIUS_METERS = 300;
 export const MIN_REDEEM_CREDITS = 100; // minimum redeemable amount; 1 credit = ₹1, no upper cap beyond balance
 export const COUPON_VALIDITY_MONTHS = 6; // coupons expire this many months after being generated
+export const CREDIT_GRANT_VALIDITY_MONTHS = 6; // each earned batch of credits expires this many months after being earned
+
+function addMonths(fromDate, months) {
+  const d = new Date(fromDate || Date.now());
+  d.setMonth(d.getMonth() + months);
+  return d;
+}
 
 export function couponExpiryDate(fromDate) {
-  const d = new Date(fromDate || Date.now());
-  d.setMonth(d.getMonth() + COUPON_VALIDITY_MONTHS);
-  return d;
+  return addMonths(fromDate, COUPON_VALIDITY_MONTHS);
+}
+
+export function creditGrantExpiryDate(fromDate) {
+  return addMonths(fromDate, CREDIT_GRANT_VALIDITY_MONTHS);
+}
+
+export function toJsDate(v) {
+  return v && v.toDate ? v.toDate() : new Date(v);
 }
 
 export function isCouponExpired(coupon) {
   if (!coupon || !coupon.expiresAt) return false;
-  const expiresAt = coupon.expiresAt.toDate ? coupon.expiresAt.toDate() : new Date(coupon.expiresAt);
-  return expiresAt < new Date();
+  return toJsDate(coupon.expiresAt) < new Date();
 }
 
 export const CREDIT_RULES = {

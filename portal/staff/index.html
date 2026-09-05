@@ -70,9 +70,9 @@ body{font-family:var(--sans);background:var(--cream);color:var(--txt);margin:0}
 </div>
 
 <script type="module">
-import { auth, db, creditsForProof, couponExpiryDate, isCouponExpired } from "/test-pas/portal/firebase-init.js";
+import { auth, db, creditsForProof, couponExpiryDate, isCouponExpired, creditGrantExpiryDate, toJsDate } from "/test-pas/portal/firebase-init.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { collection, query, where, orderBy, onSnapshot, getDocs, doc, updateDoc, addDoc, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { collection, query, where, orderBy, onSnapshot, getDocs, doc, updateDoc, addDoc, increment, serverTimestamp, writeBatch } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 let staffUid = null;
 
@@ -180,9 +180,34 @@ async function genUniqueCode(){
 window.approveVisit = async function(visitId, uid){
   const credits = parseInt(document.getElementById('credits-' + visitId).value, 10) || 0;
   if (credits <= 0) { alert('Enter a credit amount greater than 0.'); return; }
+  const now = new Date();
+  await addDoc(collection(db, 'creditGrants'), {
+    uid, amount: credits, remaining: credits,
+    earnedAt: now, expiresAt: creditGrantExpiryDate(now),
+    source: 'visit', sourceId: visitId
+  });
   await updateDoc(doc(db, 'visits', visitId), { status: 'approved', creditsAwarded: credits, reviewedAt: serverTimestamp(), reviewedBy: staffUid });
   await updateDoc(doc(db, 'customers', uid), { credits: increment(credits) });
 };
+
+// Spends `cost` credits from the customer's oldest non-expired grants first (FIFO),
+// so a redemption naturally uses up credits that would otherwise expire soonest.
+async function consumeCreditsFIFO(uid, cost){
+  const q = query(collection(db, 'creditGrants'), where('uid', '==', uid), orderBy('earnedAt', 'asc'));
+  const snap = await getDocs(q);
+  const now = new Date();
+  let toConsume = cost;
+  const batch = writeBatch(db);
+  snap.forEach((docSnap) => {
+    if (toConsume <= 0) return;
+    const g = docSnap.data();
+    if (g.remaining <= 0 || toJsDate(g.expiresAt) < now) return;
+    const take = Math.min(g.remaining, toConsume);
+    batch.update(docSnap.ref, { remaining: g.remaining - take });
+    toConsume -= take;
+  });
+  await batch.commit();
+}
 
 window.rejectVisit = async function(visitId){
   await updateDoc(doc(db, 'visits', visitId), { status: 'rejected', reviewedAt: serverTimestamp(), reviewedBy: staffUid });
@@ -190,6 +215,7 @@ window.rejectVisit = async function(visitId){
 
 window.approveRedemption = async function(reqId, uid, cost){
   const code = await genUniqueCode();
+  await consumeCreditsFIFO(uid, cost);
   const couponRef = await addDoc(collection(db, 'coupons'), { uid, code, creditsCost: cost, status: 'available', createdAt: serverTimestamp(), expiresAt: couponExpiryDate() });
   await updateDoc(doc(db, 'customers', uid), { credits: increment(-cost) });
   await updateDoc(doc(db, 'redemptionRequests', reqId), { status: 'approved', reviewedAt: serverTimestamp(), reviewedBy: staffUid, couponCode: code });

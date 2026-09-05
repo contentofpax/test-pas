@@ -181,9 +181,9 @@ function toggleMenu(){const m=document.getElementById('mmenu');const h=document.
 </script>
 
 <script type="module">
-import { auth, db, storage, CAFE_LAT, CAFE_LNG, CAFE_RADIUS_METERS, MIN_REDEEM_CREDITS, creditsForProof, STAFF_PHONES, isCouponExpired, distanceMeters } from "/test-pas/portal/firebase-init.js";
+import { auth, db, storage, CAFE_LAT, CAFE_LNG, CAFE_RADIUS_METERS, MIN_REDEEM_CREDITS, creditsForProof, STAFF_PHONES, isCouponExpired, toJsDate, distanceMeters } from "/test-pas/portal/firebase-init.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { doc, getDoc, setDoc, collection, addDoc, query, where, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { doc, getDoc, setDoc, collection, addDoc, getDocs, query, where, orderBy, onSnapshot, serverTimestamp, increment, writeBatch } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
 
 let currentUser = null;
@@ -217,6 +217,7 @@ onAuthStateChanged(auth, async (user) => {
     document.getElementById('redeemBtn').disabled = credits < MIN_REDEEM_CREDITS;
     document.getElementById('redeemAmount').max = credits;
   });
+  processExpiredGrants(user.uid);
   loadVisits(user.uid);
   loadCoupons(user.uid);
   checkGeo();
@@ -249,6 +250,29 @@ function checkGeo(){
   });
 }
 
+async function processExpiredGrants(uid){
+  const q = query(collection(db, 'creditGrants'), where('uid', '==', uid), orderBy('earnedAt', 'asc'));
+  const snap = await getDocs(q);
+  const now = new Date();
+  let totalExpired = 0;
+  const batch = writeBatch(db);
+  let touched = false;
+  snap.forEach((docSnap) => {
+    const g = docSnap.data();
+    if (g.remaining > 0 && toJsDate(g.expiresAt) < now) {
+      totalExpired += g.remaining;
+      batch.update(docSnap.ref, { remaining: 0 });
+      touched = true;
+    }
+  });
+  if (totalExpired > 0) {
+    batch.update(doc(db, 'customers', uid), { credits: increment(-totalExpired) });
+  }
+  if (touched) {
+    try { await batch.commit(); } catch (e) { console.error(e); }
+  }
+}
+
 async function loadVisits(uid){
   const list = document.getElementById('visitsList');
   const q = query(collection(db, 'visits'), where('uid', '==', uid), orderBy('submittedAt', 'desc'));
@@ -258,7 +282,7 @@ async function loadVisits(uid){
     snap.forEach((d) => {
       const v = d.data();
       const date = v.submittedAt ? v.submittedAt.toDate().toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' }) : '';
-      const typeLabel = { google_review: 'Google Review', instagram_post: 'Instagram Post', instagram_story: 'Instagram Story' }[v.proofType] || v.proofType;
+      const typeLabel = { google_review: 'Google Review', instagram_post: 'Instagram Post', instagram_story: 'Instagram Story', bill_amount: 'Bill Amount' }[v.proofType] || v.proofType;
       const row = document.createElement('div');
       row.className = 'list-item';
       row.innerHTML = '<div class="li-main"><div class="li-title">' + typeLabel + '</div><div class="li-sub">' + date + (v.status === 'approved' ? ' · +' + (v.creditsAwarded||0) + ' credits' : '') + '</div></div><span class="badge ' + v.status + '">' + v.status + '</span>';
