@@ -79,8 +79,8 @@ footer{background:var(--blue);padding:40px 8vw;display:flex;justify-content:spac
       <div class="fg">
         <label class="fl">Mobile number</label>
         <div class="phone-prefix">
-          <span>+91</span>
-          <input type="tel" class="fi" id="phoneInput" placeholder="10 digit mobile number" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)">
+          <select class="fi" id="countryCode" style="flex:0 0 auto;width:auto;max-width:130px;border-radius:2px 0 0 2px;border-right:none"></select>
+          <input type="tel" class="fi" id="phoneInput" placeholder="Mobile number" maxlength="14" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,14)">
         </div>
       </div>
       <div id="recaptcha-container"></div>
@@ -141,6 +141,65 @@ let resendInterval = null;
 const params = new URLSearchParams(location.search);
 const nextUrl = params.get('next') || '/test-pas/portal/dashboard/';
 
+const COUNTRY_CODES = [
+  ['91', 'India'],
+  ['1', 'United States'], ['1', 'Canada'],
+  ['44', 'United Kingdom'], ['61', 'Australia'], ['971', 'UAE'], ['966', 'Saudi Arabia'],
+  ['65', 'Singapore'], ['60', 'Malaysia'], ['49', 'Germany'], ['33', 'France'],
+  ['39', 'Italy'], ['34', 'Spain'], ['31', 'Netherlands'], ['41', 'Switzerland'],
+  ['46', 'Sweden'], ['47', 'Norway'], ['45', 'Denmark'], ['358', 'Finland'],
+  ['353', 'Ireland'], ['351', 'Portugal'], ['30', 'Greece'], ['48', 'Poland'],
+  ['420', 'Czech Republic'], ['43', 'Austria'], ['32', 'Belgium'], ['7', 'Russia'],
+  ['380', 'Ukraine'], ['90', 'Turkey'], ['20', 'Egypt'], ['27', 'South Africa'],
+  ['234', 'Nigeria'], ['254', 'Kenya'], ['233', 'Ghana'], ['212', 'Morocco'],
+  ['216', 'Tunisia'], ['213', 'Algeria'], ['86', 'China'], ['81', 'Japan'],
+  ['82', 'South Korea'], ['852', 'Hong Kong'], ['886', 'Taiwan'], ['66', 'Thailand'],
+  ['84', 'Vietnam'], ['62', 'Indonesia'], ['63', 'Philippines'], ['880', 'Bangladesh'],
+  ['92', 'Pakistan'], ['94', 'Sri Lanka'], ['977', 'Nepal'], ['975', 'Bhutan'],
+  ['960', 'Maldives'], ['93', 'Afghanistan'], ['98', 'Iran'], ['964', 'Iraq'],
+  ['972', 'Israel'], ['962', 'Jordan'], ['961', 'Lebanon'], ['965', 'Kuwait'],
+  ['973', 'Bahrain'], ['974', 'Qatar'], ['968', 'Oman'], ['967', 'Yemen'],
+  ['52', 'Mexico'], ['55', 'Brazil'], ['54', 'Argentina'], ['56', 'Chile'],
+  ['57', 'Colombia'], ['51', 'Peru'], ['58', 'Venezuela'], ['593', 'Ecuador'],
+  ['591', 'Bolivia'], ['595', 'Paraguay'], ['598', 'Uruguay'],
+  ['64', 'New Zealand'], ['679', 'Fiji'],
+  ['355', 'Albania'], ['376', 'Andorra'], ['375', 'Belarus'], ['387', 'Bosnia and Herzegovina'],
+  ['359', 'Bulgaria'], ['385', 'Croatia'], ['357', 'Cyprus'], ['372', 'Estonia'],
+  ['354', 'Iceland'], ['371', 'Latvia'], ['423', 'Liechtenstein'], ['370', 'Lithuania'],
+  ['352', 'Luxembourg'], ['356', 'Malta'], ['373', 'Moldova'], ['377', 'Monaco'],
+  ['382', 'Montenegro'], ['389', 'North Macedonia'], ['40', 'Romania'], ['378', 'San Marino'],
+  ['381', 'Serbia'], ['421', 'Slovakia'], ['386', 'Slovenia'], ['36', 'Hungary'],
+  ['995', 'Georgia'], ['374', 'Armenia'], ['994', 'Azerbaijan'], ['998', 'Uzbekistan'],
+  ['996', 'Kyrgyzstan'], ['992', 'Tajikistan'], ['993', 'Turkmenistan'], ['976', 'Mongolia'],
+  ['95', 'Myanmar'], ['856', 'Laos'], ['855', 'Cambodia'], ['673', 'Brunei'],
+  ['853', 'Macau'],
+  ['218', 'Libya'], ['249', 'Sudan'], ['251', 'Ethiopia'], ['255', 'Tanzania'],
+  ['256', 'Uganda'], ['260', 'Zambia'], ['263', 'Zimbabwe'], ['258', 'Mozambique'],
+  ['261', 'Madagascar'], ['265', 'Malawi'], ['267', 'Botswana'], ['264', 'Namibia'],
+  ['268', 'Eswatini'], ['266', 'Lesotho'], ['220', 'Gambia'], ['221', 'Senegal'],
+  ['223', 'Mali'], ['225', 'Ivory Coast'], ['226', 'Burkina Faso'], ['227', 'Niger'],
+  ['228', 'Togo'], ['229', 'Benin'], ['230', 'Mauritius'], ['232', 'Sierra Leone'],
+  ['231', 'Liberia'], ['237', 'Cameroon'], ['241', 'Gabon'], ['242', 'Congo'],
+  ['243', 'DR Congo'], ['244', 'Angola'], ['252', 'Somalia'], ['253', 'Djibouti'],
+  ['297', 'Aruba'], ['1', 'Jamaica'], ['1', 'Trinidad and Tobago'], ['1', 'Bahamas'],
+  ['1', 'Barbados'], ['1', 'Dominican Republic'], ['1', 'Puerto Rico'], ['53', 'Cuba'],
+  ['502', 'Guatemala'], ['503', 'El Salvador'], ['504', 'Honduras'], ['505', 'Nicaragua'],
+  ['506', 'Costa Rica'], ['507', 'Panama'], ['592', 'Guyana'], ['597', 'Suriname']
+].sort((a, b) => a[1].localeCompare(b[1]));
+
+function populateCountryCodes(){
+  const sel = document.getElementById('countryCode');
+  sel.innerHTML = '';
+  COUNTRY_CODES.forEach(([dial, name]) => {
+    const opt = document.createElement('option');
+    opt.value = '+' + dial;
+    opt.textContent = '+' + dial + ' ' + name;
+    if (dial === '91' && name === 'India') opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+populateCountryCodes();
+
 onAuthStateChanged(auth, async (user) => {
   if (!user) return;
   const snap = await getDoc(doc(db, 'customers', user.uid));
@@ -169,14 +228,16 @@ function getVerifier(){
 
 window.sendOtp = async function(isResend){
   clearErr('phoneErr'); clearErr('otpErr');
+  const dial = document.getElementById('countryCode').value;
   const phone = document.getElementById('phoneInput').value;
-  if (!/^\d{10}$/.test(phone)) { showErr('phoneErr', 'Please enter a valid 10-digit mobile number.'); return; }
+  if (!/^\d{4,14}$/.test(phone)) { showErr('phoneErr', 'Please enter a valid mobile number.'); return; }
+  const fullNumber = dial + phone;
   const btn = isResend ? document.getElementById('resendBtn') : document.getElementById('sendOtpBtn');
   btn.disabled = true;
   try {
     const verifier = getVerifier();
-    confirmationResult = await signInWithPhoneNumber(auth, '+91' + phone, verifier);
-    document.getElementById('otpPhoneLabel').textContent = '+91 ' + phone;
+    confirmationResult = await signInWithPhoneNumber(auth, fullNumber, verifier);
+    document.getElementById('otpPhoneLabel').textContent = dial + ' ' + phone;
     document.getElementById('otpInput').value = '';
     showStep('stepOtp');
     startResendTimer();

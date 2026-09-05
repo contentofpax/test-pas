@@ -35,7 +35,10 @@ body{font-family:var(--sans);background:var(--cream);color:var(--txt);margin:0}
 <div class="swrap" id="app" style="display:none">
   <div class="shdr">
     <h1>Staff <em>Approvals.</em></h1>
-    <button class="logout" onclick="doLogout()">Log Out</button>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/test-pas/portal/dashboard/" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);text-decoration:underline">My Account</a>
+      <button class="logout" onclick="doLogout()">Log Out</button>
+    </div>
   </div>
   <p>Review visit claims and redemption requests. Approvals credit the customer's account immediately.</p>
 
@@ -66,7 +69,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--txt);margin:0}
 </div>
 
 <script type="module">
-import { auth, db } from "/test-pas/portal/firebase-init.js";
+import { auth, db, creditsForProof } from "/test-pas/portal/firebase-init.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { collection, query, where, orderBy, onSnapshot, getDocs, doc, updateDoc, addDoc, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
@@ -82,7 +85,7 @@ onAuthStateChanged(auth, (user) => {
 window.doLogout = function(){ signOut(auth).then(() => location.href = '/test-pas/portal/'); };
 
 function typeLabel(t){
-  return { google_review: 'Google Review', instagram_post: 'Instagram Post', instagram_story: 'Instagram Story' }[t] || escapeHtml(t);
+  return { google_review: 'Google Review', instagram_post: 'Instagram Post', instagram_story: 'Instagram Story', bill_amount: 'Bill Amount' }[t] || escapeHtml(t);
 }
 
 function escapeHtml(s){
@@ -110,14 +113,16 @@ function loadVisits(){
       const row = document.createElement('div');
       row.className = 'req';
       const photoHtml = v.proofImageUrl ? '<a href="' + v.proofImageUrl + '" target="_blank" rel="noopener noreferrer"><img src="' + v.proofImageUrl + '" alt="Uploaded proof" style="max-width:140px;max-height:100px;border-radius:4px;display:block;margin-top:8px;object-fit:cover"></a>' : '';
+      const billText = v.proofType === 'bill_amount' ? ' &middot; Bill: ₹' + (v.billAmount || 0) : '';
+      const suggestedCredits = creditsForProof(v.proofType, v.billAmount);
       row.innerHTML =
         '<div class="req-main">' +
-          '<div class="req-title">' + typeLabel(v.proofType) + ' &middot; ' + escapeHtml(v.phone) + '</div>' +
+          '<div class="req-title">' + escapeHtml(v.name) + ' &middot; ' + escapeHtml(v.phone) + ' &middot; ' + typeLabel(v.proofType) + billText + '</div>' +
           '<div class="req-sub">' + distText + (v.proofLink ? ' &middot; ' + safeLinkHtml(v.proofLink) : '') + (v.proofNote ? ' &middot; ' + escapeHtml(v.proofNote) : '') + '</div>' +
           photoHtml +
         '</div>' +
         '<div class="req-actions">' +
-          '<input type="number" class="creditinput" value="10" min="1" id="credits-' + d.id + '">' +
+          '<input type="number" class="creditinput" value="' + suggestedCredits + '" min="1" id="credits-' + d.id + '">' +
           '<button class="btnok" onclick="approveVisit(\'' + d.id + '\', \'' + v.uid + '\')">Approve</button>' +
           '<button class="btnrej" onclick="rejectVisit(\'' + d.id + '\')">Reject</button>' +
         '</div>';
@@ -143,7 +148,7 @@ function loadRedemptions(){
       const row = document.createElement('div');
       row.className = 'req';
       row.innerHTML =
-        '<div class="req-main"><div class="req-title">' + escapeHtml(r.phone) + ' &middot; ' + cost + ' credits</div></div>' +
+        '<div class="req-main"><div class="req-title">' + escapeHtml(r.name) + ' &middot; ' + escapeHtml(r.phone) + ' &middot; ' + cost + ' credits</div></div>' +
         '<div class="req-actions">' +
           '<button class="btnok" onclick="approveRedemption(\'' + d.id + '\', \'' + r.uid + '\', ' + cost + ')">Approve</button>' +
           '<button class="btnrej" onclick="rejectRedemption(\'' + d.id + '\')">Reject</button>' +
