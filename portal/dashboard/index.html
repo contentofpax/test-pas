@@ -277,10 +277,12 @@ async function loadCoupons(uid){
       const expired = c.status === 'available' && isCouponExpired(c);
       const badgeClass = c.status === 'redeemed' ? 'redeemed' : (expired ? 'rejected' : 'available');
       const badgeText = c.status === 'redeemed' ? 'redeemed' : (expired ? 'expired' : 'available');
-      const expiryText = c.expiresAt ? ' · valid until ' + (c.expiresAt.toDate ? c.expiresAt.toDate() : new Date(c.expiresAt)).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+      const fmtDate = (v) => (v.toDate ? v.toDate() : new Date(v)).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+      const generatedText = c.createdAt ? ' · generated ' + fmtDate(c.createdAt) : '';
+      const expiryText = c.expiresAt ? ' · valid until ' + fmtDate(c.expiresAt) : '';
       const row = document.createElement('div');
       row.className = 'list-item';
-      row.innerHTML = '<div class="li-main"><div class="coupon-code">' + c.code + '</div><div class="li-sub">Show this to staff at the counter' + expiryText + '</div></div><span class="badge ' + badgeClass + '">' + badgeText + '</span>';
+      row.innerHTML = '<div class="li-main"><div class="coupon-code">' + c.code + '</div><div class="li-sub">Show this to staff at the counter' + generatedText + expiryText + '</div></div><span class="badge ' + badgeClass + '">' + badgeText + '</span>';
       list.appendChild(row);
     });
   }, () => { list.innerHTML = '<div class="empty">Couldn’t load coupons right now.</div>'; });
