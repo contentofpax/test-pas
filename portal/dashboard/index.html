@@ -257,7 +257,7 @@ window.submitClaim = async function(){
   try {
     let proofImageUrl = null;
     if (file) {
-      const path = 'proofs/' + currentUser.uid + '/test-pas/' + Date.now() + '-' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+      const path = 'proofs/' + currentUser.uid + '/' + Date.now() + '-' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
       const fileRef = ref(storage, path);
       await uploadBytes(fileRef, file);
       proofImageUrl = await getDownloadURL(fileRef);
