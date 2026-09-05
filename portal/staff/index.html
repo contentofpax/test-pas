@@ -148,7 +148,9 @@ function loadRedemptions(){
       const row = document.createElement('div');
       row.className = 'req';
       row.innerHTML =
-        '<div class="req-main"><div class="req-title">' + escapeHtml(r.name) + ' &middot; ' + escapeHtml(r.phone) + ' &middot; ' + cost + ' credits</div></div>' +
+        '<div class="req-main"><div class="req-title">' + escapeHtml(r.name) + ' &middot; ' + escapeHtml(r.phone) + ' &middot; ' + cost + ' credits</div>' +
+          (r.refCode ? '<div class="req-sub">Customer\'s code: <strong>' + escapeHtml(r.refCode) + '</strong></div>' : '') +
+        '</div>' +
         '<div class="req-actions">' +
           '<button class="btnok" onclick="approveRedemption(\'' + d.id + '\', \'' + r.uid + '\', ' + cost + ')">Approve</button>' +
           '<button class="btnrej" onclick="rejectRedemption(\'' + d.id + '\')">Reject</button>' +

@@ -108,6 +108,7 @@ nav.sc{box-shadow:0 4px 24px rgba(0,0,0,.3)}
       <div class="credit-lbl">Your Credits</div>
       <div class="credit-num" id="creditNum">0</div>
       <div class="credit-sub" id="redeemHint">Redeem credits 1:1 for rupees off your next bill</div>
+      <div class="credit-sub" id="redeemCodeBox" style="display:none;margin-top:10px;font-size:15px;color:#fff"></div>
     </div>
     <button class="btnprimary" id="redeemBtn" onclick="requestRedeem()">Redeem Credits</button>
   </div>
@@ -329,19 +330,31 @@ window.submitClaim = async function(){
   }
 };
 
+function genRefCode(){
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code = 'RDM-';
+  for (let i = 0; i < 5; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  return code;
+}
+
 window.requestRedeem = async function(){
   const btn = document.getElementById('redeemBtn');
   btn.disabled = true; btn.textContent = 'Requesting...';
   try {
+    const refCode = genRefCode();
     await addDoc(collection(db, 'redemptionRequests'), {
       uid: currentUser.uid,
       name: currentName,
       phone: currentUser.phoneNumber,
       creditsCost: REDEEM_COST,
+      refCode,
       status: 'pending',
       createdAt: serverTimestamp()
     });
-    btn.textContent = 'Requested — show staff';
+    btn.textContent = 'Requested';
+    const box = document.getElementById('redeemCodeBox');
+    box.innerHTML = 'Show this code to staff: <strong style="font-size:20px;letter-spacing:.05em">' + refCode + '</strong>';
+    box.style.display = '';
   } catch (e) {
     btn.textContent = 'Redeem ' + REDEEM_COST + ' Credits';
     btn.disabled = false;
