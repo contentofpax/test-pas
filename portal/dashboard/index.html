@@ -110,7 +110,10 @@ nav.sc{box-shadow:0 4px 24px rgba(0,0,0,.3)}
       <div class="credit-sub" id="redeemHint">Redeem credits 1:1 for rupees off your next bill</div>
       <div class="credit-sub" id="redeemCodeBox" style="display:none;margin-top:10px;font-size:15px;color:#fff"></div>
     </div>
-    <button class="btnprimary" id="redeemBtn" onclick="requestRedeem()">Redeem Credits</button>
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+      <input type="number" id="redeemAmount" placeholder="Amount" min="200" step="1" style="width:110px;padding:10px 12px;border-radius:2px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;font-family:var(--sans);font-size:14px;text-align:center">
+      <button class="btnprimary" id="redeemBtn" onclick="requestRedeem()">Redeem</button>
+    </div>
   </div>
 
   <div class="card">
@@ -176,17 +179,18 @@ function toggleMenu(){const m=document.getElementById('mmenu');const h=document.
 </script>
 
 <script type="module">
-import { auth, db, storage, CAFE_LAT, CAFE_LNG, CAFE_RADIUS_METERS, REDEEM_COST, creditsForProof, STAFF_PHONES, distanceMeters } from "/test-pas/portal/firebase-init.js";
+import { auth, db, storage, CAFE_LAT, CAFE_LNG, CAFE_RADIUS_METERS, MIN_REDEEM_CREDITS, creditsForProof, STAFF_PHONES, distanceMeters } from "/test-pas/portal/firebase-init.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { doc, getDoc, setDoc, collection, addDoc, query, where, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
 
 let currentUser = null;
 let currentName = '';
+let currentCredits = 0;
 let currentGeo = null;
 
-document.getElementById('redeemBtn').textContent = 'Redeem ' + REDEEM_COST + ' Credits';
-document.getElementById('redeemHint').textContent = 'Earn credits, redeem ' + REDEEM_COST + '+ for ₹' + REDEEM_COST + ' off your next bill';
+document.getElementById('redeemHint').textContent = 'Redeem ' + MIN_REDEEM_CREDITS + '+ credits, 1:1 for rupees off your next bill';
+document.getElementById('redeemAmount').min = MIN_REDEEM_CREDITS;
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) { location.href = '/test-pas/portal/?next=' + encodeURIComponent(location.pathname); return; }
@@ -206,8 +210,10 @@ onAuthStateChanged(auth, async (user) => {
   }
   onSnapshot(doc(db, 'customers', user.uid), (s) => {
     const credits = (s.data() && s.data().credits) || 0;
+    currentCredits = credits;
     document.getElementById('creditNum').textContent = credits;
-    document.getElementById('redeemBtn').disabled = credits < REDEEM_COST;
+    document.getElementById('redeemBtn').disabled = credits < MIN_REDEEM_CREDITS;
+    document.getElementById('redeemAmount').max = credits;
   });
   loadVisits(user.uid);
   loadCoupons(user.uid);
@@ -338,6 +344,16 @@ function genRefCode(){
 }
 
 window.requestRedeem = async function(){
+  const errEl = document.getElementById('claimErr');
+  const amount = parseInt(document.getElementById('redeemAmount').value, 10);
+  if (!amount || amount < MIN_REDEEM_CREDITS) {
+    alert('Please enter at least ' + MIN_REDEEM_CREDITS + ' credits.');
+    return;
+  }
+  if (amount > currentCredits) {
+    alert('You only have ' + currentCredits + ' credits available.');
+    return;
+  }
   const btn = document.getElementById('redeemBtn');
   btn.disabled = true; btn.textContent = 'Requesting...';
   try {
@@ -346,7 +362,7 @@ window.requestRedeem = async function(){
       uid: currentUser.uid,
       name: currentName,
       phone: currentUser.phoneNumber,
-      creditsCost: REDEEM_COST,
+      creditsCost: amount,
       refCode,
       status: 'pending',
       createdAt: serverTimestamp()
@@ -356,7 +372,7 @@ window.requestRedeem = async function(){
     box.innerHTML = 'Show this code to staff: <strong style="font-size:20px;letter-spacing:.05em">' + refCode + '</strong>';
     box.style.display = '';
   } catch (e) {
-    btn.textContent = 'Redeem ' + REDEEM_COST + ' Credits';
+    btn.textContent = 'Redeem';
     btn.disabled = false;
     console.error(e);
   }

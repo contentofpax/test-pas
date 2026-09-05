@@ -25,7 +25,7 @@ export const STAFF_PHONES = ['+917869196341'];
 export const CAFE_LAT = 15.0422837;
 export const CAFE_LNG = 73.9883789;
 export const CAFE_RADIUS_METERS = 300;
-export const REDEEM_COST = 100; // 100 credits = 1:1 rupee value = ₹100 off
+export const MIN_REDEEM_CREDITS = 200; // minimum redeemable amount; 1 credit = ₹1, no upper cap beyond balance
 
 export const CREDIT_RULES = {
   google_review: 10,
