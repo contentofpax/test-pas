@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Staff — Approvals — PAS Specialty Coffee</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/png" href="/favicon.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#0d63a9;--brand:#2b5faa;--pale:#f0f5fc;--cream:#faf8f4;--gold:#c9a96e;--white:#fff;--txt:#0f2340;--mid:#2a4a7a;--muted:#6b85a8;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',sans-serif;--err:#e0685a;--ok:#4caf7d;}
+body{font-family:var(--sans);background:var(--cream);color:var(--txt);margin:0}
+.swrap{max-width:900px;margin:0 auto;padding:44px 5vw 80px}
+.shdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.shdr h1{font-family:var(--serif);font-size:32px;font-weight:300}
+.shdr h1 em{font-style:italic;color:var(--brand)}
+.shdr p{font-size:13px;color:var(--muted);margin-bottom:32px}
+.logout{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:underline;background:none;border:none;cursor:pointer;font-family:var(--sans)}
+.card{background:var(--white);border:1px solid rgba(43,95,170,.1);border-radius:6px;padding:26px 28px;margin-bottom:26px}
+.card h2{font-family:var(--serif);font-size:20px;font-weight:400;margin-bottom:16px}
+.empty{font-size:12px;color:var(--muted);font-style:italic}
+.req{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--pale);flex-wrap:wrap}
+.req:last-child{border-bottom:none}
+.req-main{min-width:220px;flex:1}
+.req-title{font-size:13px;font-weight:500}
+.req-sub{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.6}
+.req-sub a{color:var(--brand)}
+.req-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.creditinput{width:64px;padding:8px;border:1px solid rgba(43,95,170,.2);border-radius:2px;font-family:var(--sans);font-size:13px;text-align:center}
+.btnok{background:var(--ok);color:var(--white);border:none;padding:9px 16px;border-radius:2px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.btnrej{background:none;color:var(--err);border:1px solid var(--err);padding:9px 16px;border-radius:2px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.btnok:disabled,.btnrej:disabled{opacity:.4;cursor:not-allowed}
+.notauth{text-align:center;padding:80px 20px}
+.notauth h1{font-family:var(--serif);font-size:28px;font-weight:300;margin-bottom:10px}
+.notauth p{font-size:13px;color:var(--muted)}
+.dist-ok{color:#2e8a5c}.dist-warn{color:#b8493a}
+</style></head><body>
+
+<div class="swrap" id="app" style="display:none">
+  <div class="shdr">
+    <h1>Staff <em>Approvals.</em></h1>
+    <button class="logout" onclick="doLogout()">Log Out</button>
+  </div>
+  <p>Review visit claims and redemption requests. Approvals credit the customer's account immediately.</p>
+
+  <div class="card">
+    <h2>Pending Visit Claims</h2>
+    <div id="visitsList"><div class="empty">Nothing pending.</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Pending Redemption Requests</h2>
+    <div id="redemptionsList"><div class="empty">Nothing pending.</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Redeem a Coupon Code</h2>
+    <p class="empty" style="margin-bottom:14px">Customer shows their code at the counter — enter it here to mark it used so it can't be reused.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <input type="text" id="couponLookup" placeholder="PAS-XXXXXX" style="width:180px;padding:10px 12px;border:1px solid rgba(43,95,170,.2);border-radius:2px;font-family:var(--sans);font-size:13px;text-transform:uppercase">
+      <button class="btnok" onclick="redeemCoupon()">Mark Redeemed</button>
+    </div>
+    <div id="couponLookupMsg" style="font-size:12px;margin-top:10px"></div>
+  </div>
+</div>
+
+<div class="notauth" id="notauth" style="display:none">
+  <h1>Not <em style="font-style:italic;color:var(--brand)">authorized.</em></h1>
+  <p>This account doesn't have staff access. Contact the site admin if this seems wrong.</p>
+</div>
+
+<script type="module">
+import { auth, db } from "/portal/firebase-init.js";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { collection, query, where, orderBy, onSnapshot, getDocs, doc, updateDoc, addDoc, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+let staffUid = null;
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) { location.href = '/portal/?next=' + encodeURIComponent(location.pathname); return; }
+  staffUid = user.uid;
+  loadVisits();
+  loadRedemptions();
+});
+
+window.doLogout = function(){ signOut(auth).then(() => location.href = '/portal/'); };
+
+function typeLabel(t){
+  return { google_review: 'Google Review', instagram_post: 'Instagram Post', instagram_story: 'Instagram Story' }[t] || escapeHtml(t);
+}
+
+function escapeHtml(s){
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+function safeLinkHtml(link){
+  if (!link) return '';
+  const esc = escapeHtml(link);
+  if (/^https?:\/\//i.test(link)) return '<a href="' + esc + '" target="_blank" rel="noopener noreferrer">' + esc + '</a>';
+  return esc;
+}
+
+function loadVisits(){
+  const list = document.getElementById('visitsList');
+  const q = query(collection(db, 'visits'), where('status', '==', 'pending'), orderBy('submittedAt', 'asc'));
+  onSnapshot(q, (snap) => {
+    document.getElementById('app').style.display = 'block';
+    document.getElementById('notauth').style.display = 'none';
+    if (snap.empty) { list.innerHTML = '<div class="empty">Nothing pending.</div>'; return; }
+    list.innerHTML = '';
+    snap.forEach((d) => {
+      const v = d.data();
+      const distText = v.distanceMeters == null ? 'no location' : (v.distanceMeters <= 300 ? '<span class="dist-ok">' + v.distanceMeters + 'm away</span>' : '<span class="dist-warn">' + (v.distanceMeters/1000).toFixed(1) + 'km away</span>');
+      const row = document.createElement('div');
+      row.className = 'req';
+      const photoHtml = v.proofImageUrl ? '<a href="' + v.proofImageUrl + '" target="_blank" rel="noopener noreferrer"><img src="' + v.proofImageUrl + '" alt="Uploaded proof" style="max-width:140px;max-height:100px;border-radius:4px;display:block;margin-top:8px;object-fit:cover"></a>' : '';
+      row.innerHTML =
+        '<div class="req-main">' +
+          '<div class="req-title">' + typeLabel(v.proofType) + ' &middot; ' + escapeHtml(v.phone) + '</div>' +
+          '<div class="req-sub">' + distText + (v.proofLink ? ' &middot; ' + safeLinkHtml(v.proofLink) : '') + (v.proofNote ? ' &middot; ' + escapeHtml(v.proofNote) : '') + '</div>' +
+          photoHtml +
+        '</div>' +
+        '<div class="req-actions">' +
+          '<input type="number" class="creditinput" value="10" min="1" id="credits-' + d.id + '">' +
+          '<button class="btnok" onclick="approveVisit(\'' + d.id + '\', \'' + v.uid + '\')">Approve</button>' +
+          '<button class="btnrej" onclick="rejectVisit(\'' + d.id + '\')">Reject</button>' +
+        '</div>';
+      list.appendChild(row);
+    });
+  }, (err) => {
+    if (err.code === 'permission-denied') {
+      document.getElementById('app').style.display = 'none';
+      document.getElementById('notauth').style.display = 'block';
+    }
+  });
+}
+
+function loadRedemptions(){
+  const list = document.getElementById('redemptionsList');
+  const q = query(collection(db, 'redemptionRequests'), where('status', '==', 'pending'), orderBy('createdAt', 'asc'));
+  onSnapshot(q, (snap) => {
+    if (snap.empty) { list.innerHTML = '<div class="empty">Nothing pending.</div>'; return; }
+    list.innerHTML = '';
+    snap.forEach((d) => {
+      const r = d.data();
+      const cost = Number(r.creditsCost) || 0;
+      const row = document.createElement('div');
+      row.className = 'req';
+      row.innerHTML =
+        '<div class="req-main"><div class="req-title">' + escapeHtml(r.phone) + ' &middot; ' + cost + ' credits</div></div>' +
+        '<div class="req-actions">' +
+          '<button class="btnok" onclick="approveRedemption(\'' + d.id + '\', \'' + r.uid + '\', ' + cost + ')">Approve</button>' +
+          '<button class="btnrej" onclick="rejectRedemption(\'' + d.id + '\')">Reject</button>' +
+        '</div>';
+      list.appendChild(row);
+    });
+  }, () => {});
+}
+
+function genCode(){
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code = 'PAS-';
+  for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  return code;
+}
+
+window.approveVisit = async function(visitId, uid){
+  const credits = parseInt(document.getElementById('credits-' + visitId).value, 10) || 0;
+  if (credits <= 0) { alert('Enter a credit amount greater than 0.'); return; }
+  await updateDoc(doc(db, 'visits', visitId), { status: 'approved', creditsAwarded: credits, reviewedAt: serverTimestamp(), reviewedBy: staffUid });
+  await updateDoc(doc(db, 'customers', uid), { credits: increment(credits) });
+};
+
+window.rejectVisit = async function(visitId){
+  await updateDoc(doc(db, 'visits', visitId), { status: 'rejected', reviewedAt: serverTimestamp(), reviewedBy: staffUid });
+};
+
+window.approveRedemption = async function(reqId, uid, cost){
+  const code = genCode();
+  await addDoc(collection(db, 'coupons'), { uid, code, creditsCost: cost, status: 'available', createdAt: serverTimestamp() });
+  await updateDoc(doc(db, 'customers', uid), { credits: increment(-cost) });
+  await updateDoc(doc(db, 'redemptionRequests', reqId), { status: 'approved', reviewedAt: serverTimestamp(), reviewedBy: staffUid, couponCode: code });
+};
+
+window.rejectRedemption = async function(reqId){
+  await updateDoc(doc(db, 'redemptionRequests', reqId), { status: 'rejected', reviewedAt: serverTimestamp(), reviewedBy: staffUid });
+};
+
+window.redeemCoupon = async function(){
+  const msg = document.getElementById('couponLookupMsg');
+  const code = document.getElementById('couponLookup').value.trim().toUpperCase();
+  msg.style.color = 'var(--muted)';
+  msg.textContent = 'Looking up...';
+  if (!code) { msg.textContent = 'Enter a code.'; return; }
+  try {
+    const q = query(collection(db, 'coupons'), where('code', '==', code));
+    const snap = await getDocs(q);
+    if (snap.empty) { msg.style.color = 'var(--err)'; msg.textContent = 'No coupon found with that code.'; return; }
+    const d = snap.docs[0];
+    if (d.data().status === 'redeemed') { msg.style.color = 'var(--err)'; msg.textContent = 'This coupon was already redeemed.'; return; }
+    await updateDoc(doc(db, 'coupons', d.id), { status: 'redeemed', redeemedAt: serverTimestamp(), redeemedBy: staffUid });
+    msg.style.color = 'var(--ok)';
+    msg.textContent = 'Marked redeemed.';
+    document.getElementById('couponLookup').value = '';
+  } catch (e) {
+    msg.style.color = 'var(--err)';
+    msg.textContent = 'Something went wrong. Please try again.';
+    console.error(e);
+  }
+};
+</script>
+</body></html>

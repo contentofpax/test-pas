@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5G8FXY3MS"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-Z5G8FXY3MS');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Gallery — PAS Specialty Coffee</title>
+<meta name="description" content="See inside PAS Specialty Coffee — our space, drinks, food, and the Agonda Beach vibe. Browse photos of our 100% vegetarian cafe in Goa.">
+<meta property="og:title" content="Gallery — PAS Specialty Coffee">
+<meta property="og:description" content="See inside PAS Specialty Coffee — our space, drinks, food, and the Agonda Beach vibe in Goa.">
+<meta property="og:image" content="og-preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#0d63a9;--brand:#2b5faa;--pale:#f0f5fc;
+  --cream:#faf8f4;--cdark:#f0ece3;--gold:#c9a96e;--goldl:#e8d5b0;
+  --white:#fff;--txt:#0f2340;--mid:#2a4a7a;--muted:#6b85a8;--bluel:#dce8f7;
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--txt);overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;background:var(--blue);border-bottom:1px solid rgba(255,255,255,.08);transition:box-shadow .3s}
+nav.sc{box-shadow:0 4px 24px rgba(0,0,0,.3)}
+.nlogo{display:flex;align-items:center;text-decoration:none}
+.nlogo img{height:28px;width:auto}
+.nlinks{display:flex;gap:26px;list-style:none;align-items:center}
+.nlinks a{font-size:10.5px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;position:relative}
+.nlinks a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nlinks a:hover,.nlinks a.act{color:var(--white)}
+.nlinks a:hover::after,.nlinks a.act::after{transform:scaleX(1)}
+.ncta{background:var(--gold)!important;color:var(--blue)!important;padding:8px 20px;border-radius:2px;font-size:10px!important;letter-spacing:.18em!important;font-weight:500!important}
+.ncta::after{display:none!important}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:rgba(255,255,255,.8);transition:all .3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px)}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:190;background:var(--blue);border-bottom:1px solid rgba(255,255,255,.1);padding:20px 5vw 28px}
+.mobile-menu.open{display:block}
+.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:0}
+.mobile-menu li a{display:block;padding:13px 0;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.06);transition:color .2s}
+.mobile-menu .mmcta{margin-top:16px;background:var(--gold);color:var(--blue)!important;text-align:center;border-radius:2px;padding:13px;border-bottom:none;font-weight:500}
+.page-hero{min-height:340px;padding:68px 8vw 64px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;background:var(--blue)}
+.page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(12,28,56,.94) 36%,rgba(12,28,56,.45));z-index:1}
+.page-hero-bg{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;filter:saturate(.8) brightness(.82)}
+.page-hero-inner{position:relative;z-index:2}
+.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.eyeline{flex:0 0 28px;height:1px;background:var(--gold)}
+.eyebrow span{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.ph-title{font-family:var(--serif);font-size:clamp(34px,5vw,64px);font-weight:300;color:var(--white);line-height:1.05}
+.ph-title em{font-style:italic;color:var(--goldl)}
+.ph-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,.5);margin-top:10px;max-width:440px;line-height:1.8}
+.rev{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.rev.vis{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+/* GALLERY */
+.gallery-section{background:var(--cream);padding:64px 0 80px}
+.gallery-hdr{text-align:center;padding:0 8vw 44px}
+.gallery-hdr .eyebrow{justify-content:center}
+.sectitle{font-family:var(--serif);font-size:clamp(26px,3.6vw,48px);font-weight:300;line-height:1.1;color:var(--txt);text-align:center}
+.sectitle em{font-style:italic;color:var(--brand)}
+.tab-nav{display:flex;justify-content:center;border-bottom:1px solid rgba(43,95,170,.14);margin:0 0 52px}
+.tab-btn{font-family:var(--serif);font-size:21px;font-weight:400;color:var(--muted);background:none;border:none;cursor:pointer;padding:12px 38px;position:relative;transition:color .25s;letter-spacing:.01em}
+.tab-btn::after{content:'';position:absolute;bottom:-1px;left:50%;right:50%;height:2px;background:var(--gold);transition:left .3s,right .3s}
+.tab-btn.active{color:var(--txt)}
+.tab-btn.active::after{left:14px;right:14px}
+.tab-btn:hover{color:var(--txt)}
+.tab-pane{display:none;padding:0 4vw}
+.tab-pane.active{display:block}
+.gallery-grid{columns:3;column-gap:14px}
+.gallery-item{break-inside:avoid;margin-bottom:14px;position:relative;overflow:hidden;border-radius:3px;cursor:pointer;background:#d8e4f0}
+.gallery-item img{width:100%;display:block;transition:transform .5s ease,filter .4s ease;filter:saturate(.88);vertical-align:bottom}
+.gallery-item:hover img{transform:scale(1.045);filter:saturate(1.05)}
+.gi-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,24,50,.48) 0%,transparent 52%);opacity:0;transition:opacity .3s}
+.gallery-item:hover .gi-overlay{opacity:1}
+.gi-label{position:absolute;bottom:14px;left:16px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.9);font-weight:400;opacity:0;transform:translateY(5px);transition:all .3s}
+.gallery-item:hover .gi-label{opacity:1;transform:translateY(0)}
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;z-index:500;background:rgba(6,16,34,.96);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.lightbox.open{opacity:1;pointer-events:all}
+.lb-img{max-width:90vw;max-height:86vh;object-fit:contain;border-radius:2px;box-shadow:0 20px 70px rgba(0,0,0,.6)}
+.lb-close{position:absolute;top:18px;right:22px;background:none;border:none;color:rgba(255,255,255,.5);font-size:34px;cursor:pointer;transition:color .2s;line-height:1;padding:4px 10px}
+.lb-close:hover{color:var(--white)}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.4);font-size:52px;cursor:pointer;padding:16px 14px;transition:color .2s;line-height:1;user-select:none}
+.lb-prev{left:0}.lb-next{right:0}
+.lb-prev:hover,.lb-next:hover{color:var(--white)}
+/* INSTAGRAM */
+.insta-section{background:var(--blue);padding:80px 8vw 72px}
+.insta-hdr{text-align:center;margin-bottom:48px}
+.insta-hdr .eyebrow{justify-content:center}
+.insta-hdr .eyebrow span{color:var(--goldl)}
+.insta-hdr .eyeline{background:var(--gold)}
+.insta-title{font-family:var(--serif);font-size:clamp(28px,3.8vw,50px);font-weight:300;color:var(--white);margin-top:6px}
+.insta-title a{color:var(--goldl);text-decoration:none;font-style:italic;transition:opacity .2s}
+.insta-title a:hover{opacity:.8}
+.insta-sub{font-size:13px;color:rgba(255,255,255,.38);margin-top:10px;letter-spacing:.04em;line-height:1.7}
+.insta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:44px}
+.insta-card{position:relative;overflow:hidden;aspect-ratio:1/1;background:#0d2347}
+.insta-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s,filter .4s;filter:saturate(.72) brightness(.85)}
+.insta-card:hover img{transform:scale(1.07);filter:saturate(1.02) brightness(1)}
+.insta-card-overlay{position:absolute;inset:0;background:rgba(13,99,169,.52);opacity:0;transition:opacity .3s;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:7px}
+.insta-card:hover .insta-card-overlay{opacity:1}
+.insta-icon{width:30px;height:30px;fill:rgba(255,255,255,.9)}
+.insta-card-tag{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.72);font-family:var(--sans)}
+.insta-cta{text-align:center}
+.btn-insta{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.28);color:rgba(255,255,255,.72);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:14px 36px;border-radius:2px;transition:all .3s;font-family:var(--sans)}
+.btn-insta svg{width:15px;height:15px;fill:currentColor;flex-shrink:0}
+.btn-insta:hover{border-color:var(--gold);color:var(--gold)}
+footer{background:var(--blue);padding:40px 8vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;border-top:1px solid rgba(255,255,255,.08);margin-top:auto;flex-shrink:0}
+.fnav{display:flex;gap:20px;list-style:none;flex-wrap:wrap}
+.fnav a{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.fnav a:hover{color:var(--gold)}
+.fcopy{font-size:11px;color:rgba(255,255,255,.22)}
+@media(max-width:860px){.nlinks{display:none}.hamburger{display:flex}}
+@media(max-width:768px){.gallery-grid{columns:2;column-gap:6px}.tab-btn{font-size:17px;padding:10px 20px}.insta-grid{grid-template-columns:repeat(2,1fr)}.tab-pane{padding:0 3vw}}
+@media(max-width:480px){.gallery-grid{columns:1}.tab-btn{font-size:15px;padding:9px 12px}.insta-grid{grid-template-columns:repeat(2,1fr);gap:6px}.tab-pane{padding:0 2vw}}
+
+/* Food gallery: clean 3-column equal grid */
+.gallery-grid--food {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 30vw;
+  gap: 6px;
+}
+.gallery-grid--food .gallery-item {
+  overflow: hidden;
+  min-height: 0;
+}
+.gallery-grid--food .gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform .5s ease;
+}
+.gallery-grid--food .gallery-item:hover img {
+  transform: scale(1.04);
+}
+@media(min-width:1200px){
+  .gallery-grid--food { grid-auto-rows: 360px; }
+}
+@media(max-width:640px){
+  .gallery-grid--food {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 45vw;
+    gap: 4px;
+  }
+}
+
+/* Drinks gallery: clean 3-column equal grid */
+.gallery-grid--drinks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 30vw;
+  gap: 6px;
+}
+.gallery-grid--drinks .gallery-item {
+  overflow: hidden;
+  min-height: 0;
+}
+.gallery-grid--drinks .gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform .5s ease;
+}
+.gallery-grid--drinks .gallery-item:hover img {
+  transform: scale(1.04);
+}
+@media(min-width:1200px){
+  .gallery-grid--drinks { grid-auto-rows: 360px; }
+}
+@media(max-width:640px){
+  .gallery-grid--drinks {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 45vw;
+    gap: 4px;
+  }
+}
+
+/* Ambience gallery: editorial mixed layout, tight no-gap grid */
+.gallery-grid--ambience {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 30vw;
+  gap: 6px;
+}
+.gallery-grid--ambience .gallery-item {
+  overflow: hidden;
+  min-height: 0;
+}
+.gallery-grid--ambience .gallery-item.gi-amb-wide {
+  grid-column: span 2;
+}
+.gallery-grid--ambience .gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform .5s ease;
+}
+.gallery-grid--ambience .gallery-item:hover img {
+  transform: scale(1.04);
+}
+@media(min-width:1200px){
+  .gallery-grid--ambience {
+    grid-auto-rows: 360px;
+  }
+}
+@media(max-width:640px){
+  .gallery-grid--ambience {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 45vw;
+    gap: 4px;
+  }
+  .gallery-grid--ambience .gallery-item.gi-amb-wide {
+    grid-column: span 2;
+  }
+}
+
+/* Instagram embed grid */
+.insta-embed-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1100px;
+  margin: 40px auto 32px;
+  padding: 0 5vw;
+}
+.insta-embed-wrap {
+  min-width: 0;
+}
+.insta-embed-wrap .instagram-media {
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  border-radius: 8px !important;
+}
+@media(max-width:900px){
+  .insta-embed-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media(max-width:500px){
+  .insta-embed-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="/" class="nlogo"><img src="logo.png" alt="PAS Specialty Coffee"></a>
+  <ul class="nlinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/menu/">Menu</a></li>
+    <li><a href="/gallery/" class="act">Gallery</a></li>
+        <li><a href="/contact/">Contact</a></li>
+    <li><a href="/reservations/" class="ncta">Reserve a Table</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mmenu">
+  <ul>
+    <li><a href="/" onclick="toggleMenu()">Home</a></li>
+    <li><a href="/menu/" onclick="toggleMenu()">Menu</a></li>
+    <li><a href="/gallery/" onclick="toggleMenu()">Gallery</a></li>
+        <li><a href="/contact/" onclick="toggleMenu()">Contact</a></li>
+    <li><a href="/reservations/" class="mmcta" onclick="toggleMenu()">Reserve a Table</a></li>
+  </ul>
+</div>
+<div class="page-hero">
+  <img class="page-hero-bg" src="gallery2.jpeg" alt="PAS café interior">
+  <div class="page-hero-inner">
+    <div class="eyebrow"><div class="eyeline"></div><span>Gallery</span></div>
+    <h1 class="ph-title">A glimpse inside <em>PAS.</em></h1>
+    <p class="ph-sub">Every cup, every corner — captured as it really is on Agonda Beach.</p>
+  </div>
+</div>
+<section class="gallery-section">
+  <div class="gallery-hdr rev">
+    <div class="eyebrow" style="justify-content:center"><div class="eyeline"></div><span>Browse the gallery</span><div class="eyeline"></div></div>
+  </div>
+  <div class="tab-nav rev d1">
+    <button class="tab-btn active" data-tab="food" onclick="switchTab('food')">Food</button>
+    <button class="tab-btn" data-tab="drinks" onclick="switchTab('drinks')">Drinks</button>
+    <button class="tab-btn" data-tab="ambience" onclick="switchTab('ambience')">Ambience</button>
+  </div>
+  <div class="tab-pane active" id="tab-food">
+    <div class="gallery-grid gallery-grid--food">
+      <div class="gallery-item" onclick="openLightbox('food',0)">
+        <img src="gallery3.jpeg" alt="Chia Pudding Flight" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('food',1)">
+        <img src="gallery4.jpeg" alt="Fluffy Pancakes" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('food',2)">
+        <img src="gallery5.jpeg" alt="Crispy Burger & Fries" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('food',3)">
+        <img src="gallery6.jpeg" alt="Blueberry Cheesecake" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('food',4)">
+        <img src="gallery7.jpeg" alt="Morning Spread" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('food',5)">
+        <img src="gallery8.jpeg" alt="Mushroom Ramen" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('food',6)">
+        <img src="gallery9.jpeg" alt="Açaí Smoothie Bowl" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('food',7)">
+        <img src="gallery10.jpeg" alt="Cream Pasta" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('food',8)">
+        <img src="gallery11.jpeg" alt="Lotus Biscoff Box" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('food',9)">
+        <img src="gallery30.jpeg" alt="Beetroot Avocado Toast" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('food',10)">
+        <img src="gallery31.jpeg" alt="Spicy Tomato Marinara Pasta" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('food',11)">
+        <img src="gallery29.jpeg" alt="Chocolate Smoothie Bowl" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="tab-drinks">
+    <div class="gallery-grid gallery-grid--drinks">
+      <div class="gallery-item" onclick="openLightbox('drinks',0)">
+        <img src="gallery12.jpeg" alt="Sunrise Spritz" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('drinks',1)">
+        <img src="gallery13.jpeg" alt="Matcha Berry" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('drinks',2)">
+        <img src="gallery14.jpeg" alt="Flat White" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('drinks',3)">
+        <img src="gallery15.jpeg" alt="Iced Latte" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('drinks',4)">
+        <img src="gallery16.jpeg" alt="Blood Orange Mocktail" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('drinks',5)">
+        <img src="gallery17.jpeg" alt="Wheatgrass Shot" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('drinks',6)">
+        <img src="gallery18.jpeg" alt="Latte Art" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('drinks',7)">
+        <img src="gallery19.jpeg" alt="Orange Espresso" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('drinks',8)">
+        <img src="gallery20.jpeg" alt="Watermelon Cooler" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="tab-ambience">
+    <div class="gallery-grid gallery-grid--ambience">
+      <div class="gallery-item gi-amb-tall" onclick="openLightbox('ambience',0)">
+        <img src="gallery21.jpeg" alt="Signboard & Palms" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item gi-amb-wide" onclick="openLightbox('ambience',1)">
+        <img src="gallery22.jpeg" alt="The Interior" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item gi-amb-wide" onclick="openLightbox('ambience',2)">
+        <img src="gallery23.jpeg" alt="Outdoor Seating" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item gi-amb-tall" onclick="openLightbox('ambience',3)">
+        <img src="gallery24.jpeg" alt="The Brew Bar" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item gi-amb-tall" onclick="openLightbox('ambience',4)">
+        <img src="gallery25.jpeg" alt="Craft at the Bar" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item gi-amb-wide" onclick="openLightbox('ambience',5)">
+        <img src="gallery26.jpeg" alt="The Team" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item gi-amb-wide" onclick="openLightbox('ambience',6)">
+        <img src="gallery27.jpeg" alt="Coffee Bean Mural" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+      <div class="gallery-item gi-amb-tall" onclick="openLightbox('ambience',7)">
+        <img src="gallery28.jpeg" alt="Dining Area" loading="lazy">
+        <div class="gi-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeLightboxBg(event)">
+  <button class="lb-close" onclick="closeLightbox()">&#215;</button>
+  <button class="lb-prev" onclick="lbNav(-1)">&#8249;</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <button class="lb-next" onclick="lbNav(1)">&#8250;</button>
+</div>
+<section class="insta-section">
+  <div class="insta-hdr rev">
+    <div class="eyebrow" style="justify-content:center"><div class="eyeline"></div><span>Instagram</span><div class="eyeline"></div></div>
+    <h2 class="insta-title"><a href="https://www.instagram.com/pas_specialty_coffee/" target="_blank" rel="noopener">@pas_specialty_coffee</a></h2>
+    <p class="insta-sub">Follow us for daily specials, new arrivals &amp; coffee moments from Agonda Beach, Goa.</p>
+  </div>
+
+  <div class="insta-embed-grid">
+    <div class="insta-embed-wrap">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DVQyvyOCOCV/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"></blockquote>
+    </div>
+    <div class="insta-embed-wrap">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWY4AoOD8hc/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"></blockquote>
+    </div>
+    <div class="insta-embed-wrap">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXdlx6RCFIn/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"></blockquote>
+    </div>
+    <div class="insta-embed-wrap">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DYmb8anCKz2/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"></blockquote>
+    </div>
+  </div>
+
+  <div class="insta-cta rev d2">
+    <a href="https://www.instagram.com/pas_specialty_coffee/" target="_blank" rel="noopener" class="btn-insta">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Follow us on Instagram
+    </a>
+  </div>
+</section>
+<footer>
+  <ul class="fnav">
+    <li><a href="/">Home</a></li>
+    <li><a href="/menu/">Menu</a></li>
+    <li><a href="/gallery/">Gallery</a></li>
+        <li><a href="/reservations/">Reserve</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+  <div class="fcopy">&copy; 2026 Pax Edutainment Pvt. Ltd. &middot; Agonda, Goa</div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>40));
+function toggleMenu(){document.getElementById('mmenu').classList.toggle('open');document.querySelector('.hamburger').classList.toggle('open');}
+function rev(){document.querySelectorAll('.rev:not(.vis)').forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-60)el.classList.add('vis')});}
+window.addEventListener('scroll',rev,{passive:true});rev();
+function switchTab(tab){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelector('[data-tab="'+tab+'"]').classList.add('active');
+  document.getElementById('tab-'+tab).classList.add('active');
+}
+// URL param tab auto-switch
+(function(){var t=new URLSearchParams(location.search).get('tab');if(t&&['food','drinks','ambience'].includes(t))switchTab(t);})();
+// Lightbox
+var lbSrcs={},curTab='food',curIdx=0;
+function buildLbSrcs(){['food','drinks','ambience'].forEach(function(tab){lbSrcs[tab]=Array.from(document.getElementById('tab-'+tab).querySelectorAll('.gallery-item img')).map(function(i){return i.src;});});}
+function openLightbox(tab,idx){buildLbSrcs();curTab=tab;curIdx=idx;document.getElementById('lb-img').src=lbSrcs[tab][idx];document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+function closeLightboxBg(e){if(e.target.id==='lightbox')closeLightbox();}
+function lbNav(dir){buildLbSrcs();var imgs=lbSrcs[curTab];curIdx=(curIdx+dir+imgs.length)%imgs.length;document.getElementById('lb-img').src=imgs[curIdx];}
+document.addEventListener('keydown',function(e){if(!document.getElementById('lightbox').classList.contains('open'))return;if(e.key==='Escape')closeLightbox();if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);});
+</script>
+<script async src="https://www.instagram.com/embed.js"></script>
+</body>
+</html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<!-- Test push verification -->
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5G8FXY3MS"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-Z5G8FXY3MS');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PAS Specialty Coffee — Specialty Cafe in Agonda, Goa</title>
+<meta name="description" content="PAS Specialty Coffee is a 100% vegetarian specialty cafe on Agonda Beach Road, Goa. Authentic specialty coffee, all-day food menu, and warm hospitality. 5.0★ rated with 750+ reviews.">
+<meta name="keywords" content="specialty coffee, Agonda, Goa, vegetarian cafe, coffee shop, Agonda Beach, PAS Coffee">
+<meta property="og:title" content="PAS Specialty Coffee — Specialty Cafe in Agonda, Goa">
+<meta property="og:description" content="100% vegetarian specialty cafe on Agonda Beach Road, Goa. Authentic specialty coffee, all-day food menu, and warm hospitality.">
+<meta property="og:image" content="og-preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PAS Specialty Coffee — Specialty Cafe in Agonda, Goa">
+<meta name="twitter:description" content="100% vegetarian specialty cafe on Agonda Beach Road, Goa. Authentic specialty coffee, all-day food menu, and warm hospitality.">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#0d63a9; --brand:#2b5faa; --pale:#f0f5fc;
+  --cream:#faf8f4; --cdark:#f0ece3; --gold:#c9a96e; --goldl:#e8d5b0;
+  --white:#fff; --txt:#0f2340; --mid:#2a4a7a; --muted:#6b85a8; --bluel:#dce8f7;
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Outfit',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--txt);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;background:var(--blue);border-bottom:1px solid rgba(255,255,255,.08);transition:box-shadow .3s}
+nav.sc{box-shadow:0 4px 24px rgba(0,0,0,.3)}
+.nlogo img{height:28px;width:auto}
+.nlinks{display:flex;gap:26px;list-style:none;align-items:center}
+.nlinks a{font-size:10.5px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;position:relative}
+.nlinks a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nlinks a:hover,.nlinks a.act{color:var(--white)}
+.nlinks a:hover::after,.nlinks a.act::after{transform:scaleX(1)}
+.ncta{background:var(--gold)!important;color:var(--blue)!important;padding:8px 20px;border-radius:2px;font-size:10px!important;letter-spacing:.18em!important;font-weight:500!important}
+.ncta::after{display:none!important}.ncta:hover{background:var(--goldl)!important}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:rgba(255,255,255,.8);transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:190;background:var(--blue);border-bottom:1px solid rgba(255,255,255,.1);padding:20px 5vw 28px}
+.mobile-menu.open{display:block}
+.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:0}
+.mobile-menu a{display:block;padding:13px 0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.07)}
+.mobile-menu .mmcta{margin-top:16px;background:var(--gold);color:var(--blue)!important;text-align:center;border-radius:2px;padding:13px;border-bottom:none;font-weight:500}
+
+/* PAGE HERO (inner pages) */
+.page-hero{min-height:300px;padding:68px 8vw 60px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;background:var(--blue)}
+.page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(13,99,169,.92) 40%,rgba(13,99,169,.55));z-index:1}
+.page-hero-bg{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;filter:saturate(.85)}
+.page-hero-inner{position:relative;z-index:2}
+.ph-ey{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.ph-eyline{width:32px;height:1px;background:var(--gold)}
+.ph-ey span{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.ph-title{font-family:var(--serif);font-size:clamp(34px,5vw,64px);font-weight:300;color:var(--white);line-height:1.05}
+.ph-title em{font-style:italic;color:var(--goldl)}
+.ph-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);margin-top:10px;max-width:500px;line-height:1.8}
+
+/* UTILITIES */
+.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.eyeline{width:32px;height:1px;background:var(--brand)}
+.eyebrow span{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--brand);font-weight:500}
+.sectitle{font-family:var(--serif);font-size:clamp(28px,3.8vw,50px);font-weight:300;line-height:1.1;color:var(--txt);margin-bottom:18px}
+.sectitle em{font-style:italic;color:var(--brand)}
+.sbody{font-size:15px;font-weight:300;line-height:1.9;color:var(--mid);margin-bottom:14px}
+.btnprimary{background:var(--gold);color:var(--blue);padding:13px 30px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border-radius:2px;display:inline-block;transition:background .25s,transform .2s;border:none;cursor:pointer;font-family:var(--sans)}
+.btnprimary:hover{background:var(--goldl);transform:translateY(-1px)}
+.btnout{border:1px solid rgba(255,255,255,.35);color:var(--white);padding:13px 30px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border-radius:2px;display:inline-block;transition:all .25s}
+.btnout:hover{border-color:var(--white);background:rgba(255,255,255,.08)}
+.btnoutd{border:1px solid var(--brand);color:var(--brand);padding:10px 22px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border-radius:2px;display:inline-block;transition:all .2s}
+.btnoutd:hover{background:var(--brand);color:var(--white)}
+
+/* FOOTER */
+footer{background:var(--blue);padding:40px 8vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;border-top:1px solid rgba(255,255,255,.08)}
+.flogo img{height:22px;width:auto;opacity:.65}
+.fnav{display:flex;gap:20px;list-style:none;flex-wrap:wrap}
+.fnav a{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+.fnav a:hover{color:var(--gold)}
+.fcopy{font-size:11px;color:rgba(255,255,255,.22)}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.rev.vis{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* SHARED JS */
+
+@media(max-width:860px){
+  .nlinks{display:none}
+  .hamburger{display:flex}
+  .hstats{flex-wrap:wrap;gap:20px}
+}
+
+/* HERO */
+#hero{display:grid;grid-template-columns:1fr 1fr;padding-top:68px;background:var(--blue);position:relative;overflow:hidden;gap:0;min-height:640px}
+.hbg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 15% 50%,rgba(43,95,170,.5) 0%,transparent 55%),radial-gradient(ellipse at 85% 20%,rgba(58,114,196,.28) 0%,transparent 40%)}
+.hcontent{display:flex;flex-direction:column;justify-content:center;padding:56px 5vw 56px 8vw;position:relative;z-index:2}
+.hey{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.heyline{width:40px;height:1px;background:var(--gold)}
+.hey span{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.htitle{font-family:var(--serif);font-size:clamp(44px,5.5vw,82px);font-weight:300;line-height:1.05;color:var(--white);margin-bottom:22px}
+.htitle em{font-style:italic;color:var(--goldl)}
+.hsub{font-size:14px;font-weight:300;line-height:1.85;color:rgba(255,255,255,.62);max-width:380px;margin-bottom:40px}
+.hctas{display:flex;gap:12px;flex-wrap:wrap}
+.hstats{display:flex;gap:32px;margin-top:48px}
+.hslbl{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:4px}
+.hsval{font-size:13px;font-weight:300;color:rgba(255,255,255,.8)}
+.himgside{position:relative;overflow:hidden}
+.himgside img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;min-height:500px;max-height:1100px}
+.himgov{position:absolute;inset:0;left:-4px;background:linear-gradient(to right,rgba(13,99,169,1) 0%,rgba(13,99,169,.98) 4%,rgba(13,99,169,.9) 12%,rgba(13,99,169,.75) 22%,rgba(13,99,169,.52) 35%,rgba(13,99,169,.28) 50%,rgba(13,99,169,.1) 65%,rgba(13,99,169,.03) 80%,rgba(13,99,169,0) 100%)}
+
+/* STORY */
+#story{background:var(--pale)}
+.simg{position:relative;overflow:hidden;min-height:460px}
+.simg img{width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
+.simgov{position:absolute;inset:0;background:linear-gradient(to right,transparent 65%,var(--pale) 100%)}
+.scontent{padding:72px 8vw;display:flex;flex-direction:column;justify-content:center}
+.pillars{display:flex;gap:32px;margin-top:32px}
+.pnum{font-family:var(--serif);font-size:36px;font-weight:300;color:var(--bluel);line-height:1;margin-bottom:3px}
+.plbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid)}
+
+/* GALLERY PREVIEW */
+#gallery{background:#fff;padding:72px 8vw}
+.gallery-label{text-align:center;margin-bottom:48px}
+.gallery-label .eyebrow{justify-content:center}
+.gp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.gp-card{display:block;text-decoration:none;color:var(--txt)}
+.gp-img{position:relative;overflow:hidden;border-radius:3px;aspect-ratio:4/3}
+.gp-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease,filter .4s ease;filter:saturate(.9)}
+.gp-card:hover .gp-img img{transform:scale(1.05);filter:saturate(1.1)}
+.gp-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,24,50,.4) 0%,transparent 55%);opacity:0;transition:opacity .35s}
+.gp-card:hover .gp-overlay{opacity:1}
+.gp-label{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--txt);text-align:center;margin-top:14px;letter-spacing:.01em;transition:color .2s}
+.gp-card:hover .gp-label{color:var(--brand)}
+/* keep pillars/pnum/plbl CSS for mobile responsive */
+.pnum{font-family:var(--serif);font-size:36px;font-weight:300;color:var(--bluel);line-height:1;margin-bottom:3px}
+.plbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid)}
+
+/* BAR SECTION */
+#barshot{display:grid;grid-template-columns:1fr 1fr;min-height:240px}
+.barimg{overflow:hidden}
+.barimg img{width:100%;height:100%;object-fit:cover;object-position:center center}
+.barcontent{background:var(--blue);padding:40px 7vw;display:flex;flex-direction:column;justify-content:center}
+.barcontent .eyeline{background:var(--gold)}
+.barcontent .eyebrow span{color:var(--goldl)}
+.barcontent .sectitle{color:var(--white)}
+.barcontent .sectitle em{color:var(--goldl)}
+.barcontent .sbody{color:rgba(255,255,255,.65)}
+
+/* MENU PREVIEW */
+#menupreview{padding:88px 8vw;background:var(--cream)}
+.mphdr{margin-bottom:52px;border-bottom:1px solid rgba(43,95,170,.12);padding-bottom:28px}
+.mpcards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.mpcard{background:var(--white);border:1px solid rgba(43,95,170,.1);padding:30px 26px;border-radius:2px;border-top:3px solid var(--brand);transition:transform .2s,box-shadow .2s}
+.mpcard:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(13,99,169,.1)}
+.mpicon{font-size:26px;margin-bottom:14px}
+.mptitle{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--txt);margin-bottom:8px}
+.mpdesc{font-size:12px;font-weight:300;color:var(--muted);line-height:1.7;margin-bottom:16px}
+.mpitems{list-style:none;margin-bottom:18px}
+.mpitems li{font-size:12px;color:var(--mid);padding:5px 0;border-bottom:1px solid var(--pale);display:flex;justify-content:space-between}
+.mpitems li span{color:var(--brand);font-family:var(--serif);font-size:14px}
+
+/* REVIEWS */
+#reviews{padding:88px 8vw;background:var(--blue)}
+.rvtop{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px}
+.rvnum{font-family:var(--serif);font-size:60px;font-weight:300;color:var(--white);line-height:1}
+.rvstars{font-size:20px;color:var(--gold);letter-spacing:3px}
+.rvsub{font-size:12px;color:rgba(255,255,255,.4);margin-top:3px}
+.rvrating{display:flex;align-items:center;gap:14px}
+.carousel-outer{position:relative;display:flex;align-items:center;gap:8px}
+.carousel-viewport{overflow:hidden;flex:1;min-width:0}
+.carousel-track{display:flex;gap:16px;transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.review-card{flex:0 0 calc((100% - 32px)/3);min-width:0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-top:2px solid var(--gold);border-radius:2px;padding:26px;display:flex;flex-direction:column;gap:10px}
+.rev-top{display:flex;align-items:center;gap:10px}
+.rev-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0}
+.rev-meta{min-width:0}
+.rev-name{font-size:13px;font-weight:400;color:rgba(255,255,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rev-sub{font-size:11px;color:rgba(255,255,255,.4)}
+.rev-stars{display:flex;gap:2px;align-items:center;color:var(--gold);font-size:14px;letter-spacing:2px}
+.rev-age{font-size:11px;color:rgba(255,255,255,.4);margin-left:6px}
+.rev-text{font-size:13px;font-weight:300;line-height:1.8;color:rgba(255,255,255,.72);font-style:italic;flex:1}
+.carousel-arrow{width:44px;height:44px;flex-shrink:0;border:1px solid rgba(255,255,255,.25);border-radius:50%;background:rgba(255,255,255,.08);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s}
+.carousel-arrow:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4)}
+.carousel-arrow svg{width:20px;height:20px;stroke:#fff;stroke-width:2;fill:none}
+
+/* INSTAGRAM */
+.insta-section{background:var(--pale);padding:88px 8vw 80px;position:relative}
+.insta-section::before{content:'';position:absolute;top:0;left:8vw;right:8vw;height:1px;background:linear-gradient(to right,transparent,var(--bluel),transparent)}
+.insta-hdr{text-align:center;margin-bottom:48px}
+.insta-hdr .eyebrow{justify-content:center}
+.insta-hdr .eyebrow span{color:var(--brand)}
+.insta-hdr .eyeline{background:var(--brand)}
+.insta-title{font-family:var(--serif);font-size:clamp(28px,3.8vw,50px);font-weight:300;color:var(--txt);margin-top:6px}
+.insta-title a{color:var(--brand);text-decoration:none;font-style:italic;transition:color .2s}
+.insta-title a:hover{color:var(--blue)}
+.insta-sub{font-size:13px;color:var(--muted);margin-top:10px;letter-spacing:.04em;line-height:1.7}
+.insta-embed-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1100px;margin:40px auto 36px}
+.insta-embed-wrap{min-width:0;border-radius:6px;overflow:hidden;box-shadow:0 4px 20px rgba(13,99,169,.08)}
+.insta-embed-wrap .instagram-media{min-width:0!important;width:100%!important;max-width:100%!important;margin:0!important;border-radius:6px!important}
+.insta-cta{text-align:center}
+.btn-insta{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--brand);color:var(--brand);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:14px 36px;border-radius:2px;transition:all .3s;font-family:var(--sans)}
+.btn-insta svg{width:15px;height:15px;fill:currentColor;flex-shrink:0}
+.btn-insta:hover{background:var(--brand);color:var(--white)}
+@media(max-width:900px){.insta-embed-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.insta-embed-grid{grid-template-columns:1fr}}
+
+/* VISIT */
+#visit{padding:80px 8vw;background:var(--cdark);display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:stretch}
+.vlbl{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--brand);font-weight:500;margin-bottom:7px;display:flex;align-items:center;gap:10px}
+.vlbl::after{content:'';flex:1;height:1px;background:var(--bluel)}
+.vval{font-size:14px;font-weight:300;color:var(--txt);line-height:1.7}
+.vdetails{display:flex;flex-direction:column;gap:24px}
+.vbtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+.vmap{border-radius:6px;overflow:hidden;box-shadow:0 8px 40px rgba(13,99,169,.12);border:1px solid rgba(43,95,170,.15);display:flex;flex-direction:column}
+.vmap iframe{width:100%;flex:1;min-height:340px;border:none;display:block}
+.vmap-dir{display:block;text-align:center;padding:14px;background:var(--brand);color:var(--white);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;transition:background .2s}
+.vmap-dir:hover{background:var(--blue)}
+.vval a{color:var(--brand);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.vval a:hover{border-bottom-color:var(--brand)}
+.contact-pills{display:flex;gap:10px;flex-wrap:wrap}
+.contact-pill{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:20px;border:1px solid rgba(43,95,170,.2);background:var(--pale);color:var(--brand);font-size:13px;font-weight:400;text-decoration:none;transition:all .2s}
+.contact-pill:hover{background:var(--brand);color:var(--white);border-color:var(--brand)}
+.contact-pill svg{width:15px;height:15px;flex-shrink:0}
+.contact-pill.wa{background:rgba(37,211,102,.08);border-color:rgba(37,211,102,.35);color:#1f9e52}
+.contact-pill.wa:hover{background:#25d366;color:var(--white);border-color:#25d366}
+.menu-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.menu-badge{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);background:var(--pale);border:1px solid rgba(43,95,170,.15);padding:7px 15px;border-radius:20px;font-weight:500;white-space:nowrap}
+
+@media(max-width:1100px) and (min-width:901px){#hero{grid-template-columns:1fr 1fr}.himgside img{min-height:600px}}
+@media(max-width:900px){
+  #hero,#barshot,#visit{grid-template-columns:1fr}
+  #story{grid-template-columns:1fr;display:flex;flex-direction:column}
+  .simg{order:1;height:auto;min-height:unset}.simg img{height:auto;min-height:unset;object-fit:contain;width:100%}
+  .scontent{order:2}
+  .simgov{background:none}
+  #hero{min-height:unset}
+  .himgside{height:auto;min-height:unset}.himgside img{min-height:unset;height:auto;object-fit:contain}.barimg{height:auto}.barimg img{height:auto;object-fit:contain}
+  .gp-grid{grid-template-columns:1fr}
+  .gp-img{aspect-ratio:16/9}
+  .mpcards{grid-template-columns:1fr}
+  .mphdr,.rvtop{flex-direction:column;gap:16px;align-items:flex-start}
+  .review-card{flex:0 0 calc(100% - 0px)!important}
+  .carousel-arrow{width:32px;height:32px}
+  .pillars{flex-wrap:wrap;gap:20px}
+}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="/" class="nlogo"><img src="logo.png" alt="PAS Specialty Coffee"></a>
+  <ul class="nlinks"><li><a href="/" class="act">Home</a></li><li><a href="/menu/">Menu</a></li><li><a href="/gallery/">Gallery</a></li><li><a href="/contact/">Contact</a></li><li><a href="/portal/">My Account</a></li>
+    <li><a href="/reservations/" class="ncta">Reserve a Table</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mmenu">
+  <ul><li><a href="/" onclick="toggleMenu()">Home</a></li><li><a href="/menu/" onclick="toggleMenu()">Menu</a></li><li><a href="/gallery/" onclick="toggleMenu()">Gallery</a></li><li><a href="/contact/" onclick="toggleMenu()">Contact</a></li><li><a href="/portal/" onclick="toggleMenu()">My Account</a></li>
+    <li><a href="/reservations/" class="mmcta" onclick="toggleMenu()">Reserve a Table</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hbg"></div>
+  <div class="hcontent">
+    <div class="hey"><div class="heyline"></div><span>Agonda Beach, Goa</span></div>
+    <h1 class="htitle">The Ritual<br>of <em>Precision.</em></h1>
+    <p class="hsub">Crafting specialty coffee with intention, from ceremonial matcha to single-origin pour-overs, in the heart of Goa's most serene beach village.</p>
+    <div class="hctas">
+      <a href="/reservations/" class="btnprimary">Reserve a Table</a>
+      <a href="/menu/" class="btnout">Explore the Menu</a>
+    </div>
+    <div class="hstats">
+      <div><div class="hslbl">Hours</div><div class="hsval">Daily · 07:30 to 22:30</div></div>
+      <div><div class="hslbl">Google Rating</div><div class="hsval">5.0 ★ · 750+ reviews</div></div>
+      <div><div class="hslbl">Kitchen</div><div class="hsval">100% Vegetarian</div></div>
+      <div><div class="hslbl">Work Friendly</div><div class="hsval">Fast WiFi · Workspaces Available</div></div>
+    </div>
+  </div>
+  <div class="himgside">
+    <img src="hero.jpeg" alt="PAS brew bar">
+    <div class="himgov"></div>
+  </div></div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="scontent">
+    <div class="eyebrow rev"><div class="eyeline"></div><span>Our Story</span></div>
+    <h2 class="sectitle rev d1">A small bar built<br>around <em>one perfect pour.</em></h2>
+    <p class="sbody rev d2">Born in 2026, PAS Specialty Coffee is a purely vegetarian café nestled on Agonda Beach Road, one of Goa's most serene and unspoilt stretches of coast.</p>
+    <p class="sbody rev d2">We built this place around a single obsession: authentic specialty coffee, done right, every single time. From ceremonial-grade matcha to signature cold brews, every cup is made with purpose, paired with a short, considered all-day kitchen.</p>
+    <p class="sbody rev d2">Known for brilliant coffee, genuinely warm hospitality, and a space that makes you want to stay a little longer.</p>
+  </div>
+</section>
+
+<!-- GALLERY PREVIEW -->
+<section id="gallery">
+  <div class="gallery-label rev">
+    <div class="eyebrow"><div class="eyeline"></div><span>Gallery</span><div class="eyeline"></div></div>
+    <h2 class="sectitle" style="margin-bottom:0">Explore <em>PAS.</em></h2>
+  </div>
+  <div class="gp-grid rev d1">
+    <a href="/gallery/?tab=food" class="gp-card">
+      <div class="gp-img">
+        <img src="galleryfood.jpeg" alt="Food at PAS">
+        <div class="gp-overlay"></div>
+      </div>
+      <div class="gp-label">Food</div>
+    </a>
+    <a href="/gallery/?tab=drinks" class="gp-card">
+      <div class="gp-img">
+        <img src="gallerydrinks.jpeg" alt="Drinks at PAS">
+        <div class="gp-overlay"></div>
+      </div>
+      <div class="gp-label">Drinks</div>
+    </a>
+    <a href="/gallery/?tab=ambience" class="gp-card">
+      <div class="gp-img">
+        <img src="galleryambience.jpeg" alt="PAS ambience" style="object-position:20% center">
+        <div class="gp-overlay"></div>
+      </div>
+      <div class="gp-label">Ambience</div>
+    </a>
+  </div>
+  <div style="text-align:center;margin-top:40px" class="rev d2">
+    <a href="/gallery/" class="btnoutd">Explore Full Gallery</a>
+  </div>
+</section>
+
+<!-- BAR SECTION -->
+<section id="barshot">
+  <div class="barimg rev">
+    <img src="barista.jpeg" alt="PAS barista pouring espresso">
+  </div>
+  <div class="barcontent">
+    <div class="eyebrow rev"><div class="eyeline"></div><span>The Bar</span></div>
+    <h2 class="sectitle rev d1">Precision tools.<br><em>Passionate hands.</em></h2>
+    <p class="sbody rev d2">Every detail at PAS is intentional: from the espresso machine to the handpicked ceramics. We serve specialty-grade arabica, ceremonial matcha, and cold brews crafted over time.</p>
+    <p class="sbody rev d2">Our baristas treat every cup as a small piece of craft. No shortcuts. No noise. Just coffee the way it should be.</p>
+    <div class="rev d3" style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
+      <a href="/menu/" class="btnprimary">See the Menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- MENU PREVIEW -->
+<section id="menupreview">
+  <div class="mphdr rev">
+    <div class="eyebrow"><div class="eyeline"></div><span>The Menu</span></div>
+    <h2 class="sectitle" style="margin-bottom:0">All day, <em>slow cooked.</em></h2>
+    <div class="menu-badges">
+      <span class="menu-badge">100% Vegetarian</span>
+      <span class="menu-badge">Vegan Options</span>
+      <span class="menu-badge">Jain Options</span>
+    </div>
+  </div>
+  <div class="mpcards">
+    <div class="mpcard rev d1">
+      <div class="mpicon">☕</div>
+      <div class="mptitle">Specialty Coffee</div>
+      <p class="mpdesc">Classics, signature lattes, cold brews, and manual brewing (V60, Aeropress, French Press).</p>
+      <ul class="mpitems">
+        <li>Espresso <span>₹150</span></li>
+        <li>Spanish Latte <span>₹285</span></li>
+        <li>Matcha Tonic <span>₹320</span></li>
+        <li>Belgian Frappe <span>₹320</span></li>
+        <li>Tiramisu Iced Latte <span>₹340</span></li>
+      </ul>
+      <a href="/menu/#drinks" class="btnoutd">View Drinks Menu</a>
+    </div>
+    <div class="mpcard rev d2">
+      <div class="mpicon">🍕</div>
+      <div class="mptitle">All-Day Food</div>
+      <p class="mpdesc">Breakfast bowls, Neapolitan pizzas, ramen, pasta, croissants. All vegetarian, all day.</p>
+      <ul class="mpitems">
+        <li>Margherita Pizza <span>₹440</span></li>
+        <li>Creamy Mushroom Linguine <span>₹390</span></li>
+        <li>Kimchi Ramen Bowl <span>₹390</span></li>
+        <li>Creamy Avocado Toast <span>₹390</span></li>
+        <li>Hot Smoky Brownie <span>₹290</span></li>
+      </ul>
+      <a href="/menu/#food" class="btnoutd">View Food Menu</a>
+    </div>
+    <div class="mpcard rev d3">
+      <div class="mpicon">🍵</div>
+      <div class="mptitle">Matcha & More</div>
+      <p class="mpdesc">Ceremonial-grade matcha in 8 variations, specialty teas, smoothies, shakes, and juices.</p>
+      <ul class="mpitems">
+        <li>Strawberries Matcha Latte <span>₹340</span></li>
+        <li>Mango Matcha <span>₹340</span></li>
+        <li>Banana Cream Matcha <span>₹390</span></li>
+        <li>Berry Bliss Smoothie <span>₹380</span></li>
+        <li>Protein Smoothie <span>₹400</span></li>
+      </ul>
+      <a href="/menu/#drinks" class="btnoutd">View Drinks Menu</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="rvtop">
+    <div>
+      <div class="eyebrow"><div class="eyeline" style="background:var(--gold)"></div><span style="color:var(--gold)">Google Reviews</span></div>
+      <h2 class="sectitle" style="color:var(--white);margin-bottom:4px">What guests <em style="color:var(--goldl)">say.</em></h2>
+    </div>
+    <div class="rvrating">
+      <div class="rvnum">5.0</div>
+      <div><div class="rvstars">★★★★★</div><div class="rvsub">750+ reviews on Google</div></div>
+    </div>
+  </div>
+  <div class="carousel-outer">
+    <button class="carousel-arrow" id="prevReview" aria-label="Previous reviews">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="reviewTrack"></div>
+    </div>
+    <button class="carousel-arrow" id="nextReview" aria-label="Next reviews">
+      <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+  </div>
+  <div style="text-align:center;margin-top:32px">
+    <a href="https://www.google.com/maps/place/PAS+SPECIALTY+COFFEE/@15.042284,73.988379,16z/data=!4m6!3m5!1s0x3bbe4f00647f9bcf:0xc67e3aec133d44df!8m2!3d15.0422837!4d73.9883789!16s%2Fg%2F11myr6l9lj?hl=en-US&entry=ttu&g_ep=EgoyMDI2MDYyMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btnprimary" style="background:rgba(255,255,255,.1);color:var(--white);border:1px solid rgba(255,255,255,.25)">Read All 750+ Reviews on Google ↗</a>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="insta-section">
+  <div class="insta-hdr rev">
+    <div class="eyebrow" style="justify-content:center"><div class="eyeline"></div><span>Instagram</span><div class="eyeline"></div></div>
+    <h2 class="insta-title"><a href="https://www.instagram.com/pas_specialty_coffee/" target="_blank" rel="noopener">@pas_specialty_coffee</a></h2>
+    <p class="insta-sub">Follow us for daily specials, new arrivals &amp; coffee moments from Agonda Beach, Goa.</p>
+  </div>
+  <div class="insta-embed-grid">
+    <div class="insta-embed-wrap">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DVQyvyOCOCV/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"></blockquote>
+    </div>
+    <div class="insta-embed-wrap">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWY4AoOD8hc/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"></blockquote>
+    </div>
+    <div class="insta-embed-wrap">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXdlx6RCFIn/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"></blockquote>
+    </div>
+    <div class="insta-embed-wrap">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DYmb8anCKz2/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"></blockquote>
+    </div>
+  </div>
+  <div class="insta-cta rev d2">
+    <a href="https://www.instagram.com/pas_specialty_coffee/" target="_blank" rel="noopener" class="btn-insta">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Follow us on Instagram
+    </a>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit">
+  <div class="vdetails rev">
+    <div class="eyebrow"><div class="eyeline"></div><span>Find Us</span></div>
+    <h2 class="sectitle">Come <em>say hello.</em></h2>
+    <div><div class="vlbl">Address</div><div class="vval">House no. 362/A, Agonda Beach Road<br>Agonda, Canacona · Goa 403702</div></div>
+    <div><div class="vlbl">Hours</div><div class="vval">Daily · 07:30 to 22:30</div></div>
+    <div><div class="vlbl">Kitchen</div><div class="vval">100% Vegetarian · Vegan & Jain Options Available</div></div>
+    <div><div class="vlbl">Phone</div><div class="vval contact-pills">
+      <a href="tel:+919753146969" class="contact-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+91 97531 46969</a>
+      <a href="https://wa.me/919930865842" target="_blank" rel="noopener" class="contact-pill wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01C17.19 3.03 14.7 2 12.04 2zm0 18.13h-.01c-1.5 0-2.98-.4-4.27-1.16l-.31-.18-3.11.82.83-3.04-.2-.31a8.16 8.16 0 0 1-1.26-4.35c0-4.51 3.67-8.18 8.19-8.18 2.19 0 4.24.85 5.79 2.4a8.14 8.14 0 0 1 2.4 5.79c0 4.51-3.68 8.19-8.19 8.19zm4.49-6.13c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.22.89 2.4 1.02 2.57.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>WhatsApp</a>
+    </div></div>
+    <div><div class="vlbl">Email</div><div class="vval"><a href="mailto:contact@passpecialtycoffee.com">contact@passpecialtycoffee.com</a></div></div>
+    <div class="vbtns">
+      <a href="/reservations/" class="btnprimary">Reserve a Table</a>
+      <a href="/menu/" class="btnoutd">View the Menu</a>
+    </div>
+  </div>
+  <div class="vmap rev d1">
+    <iframe src="https://maps.google.com/maps?q=PAS+Specialty+Coffee+Agonda+Goa&output=embed&z=16" allowfullscreen loading="lazy" title="PAS location"></iframe>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=15.0422837,73.9883789&destination_place_id=PAS+Specialty+Coffee" target="_blank" rel="noopener" class="vmap-dir">Get Directions ↗</a>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo"><img src="logofooter.png" alt="PAS Specialty Coffee"></div>
+  <ul class="fnav">
+    <li><a href="/">Home</a></li>
+    <li><a href="/menu/">Menu</a></li>
+    <li><a href="/gallery/">Gallery</a></li>
+    <li><a href="/reservations/">Reserve</a></li>
+    <li><a href="/contact/">Contact</a></li>
+  </ul>
+  <div class="fcopy">© 2026 Pax Edutainment Pvt. Ltd. · Agonda, Goa</div>
+</footer>
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>40));
+function rev(){document.querySelectorAll('.rev:not(.vis)').forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-60)el.classList.add('vis')})}
+window.addEventListener('scroll',rev,{passive:true});rev();
+function toggleMenu(){
+  const m=document.getElementById('mmenu');
+  const h=document.querySelector('.hamburger');
+  m.classList.toggle('open');h.classList.toggle('open');
+}
+
+// Reviews carousel
+(function(){
+  const reviews = [
+    {name:"Chelsea Gross",sub:"Local Guide · 10 reviews",text:"When on vacation, I usually only visit a restaurant or cafe once but I had to return to Pas due to their expertise in coffee and hospitality. Pas excels in both great coffee and great food. If you are in Agonda, you NEED to try Pas Coffee. Their cranberry cold brew, iced hazelnut latte, and beetroot burger were amazing!",color:"#c9a96e",light:"rgba(201,169,110,.15)"},
+    {name:"Rosemary Broad",sub:"Local Guide · 21 reviews",text:"My friend and I visited Pas for a coffee and ended up having lunch! The place is so clean and modern, the staff were wonderful and attentive! We were even given a fresh complimentary coconut water, which was delicious. The food was lovely, coffee and shakes were great. Would visit again!",color:"#7ea8d4",light:"rgba(126,168,212,.15)"},
+    {name:"Yukta Sharma",sub:"7 reviews · 3 photos",text:"PAS coffee goes unbeatable in Agonda! Loved the overall vibe, COFFEE and also the food. Not to forget the courteous team — kudos!! 10/10 for me. If you are around, don't miss to visit their cute coffee abode.",color:"#c9a96e",light:"rgba(201,169,110,.15)"},
+    {name:"Mansi Shukla",sub:"10 reviews · 9 photos",text:"Spent the entire afternoon at this place. Loved the vibe. The food is 10 on 10. Staff is super nice. For people working on vacation, this cafe has really good wifi connectivity. And being a matcha person, I would give 100 on 10 for matcha.",color:"#7ea8d4",light:"rgba(126,168,212,.15)"},
+    {name:"Gangadhar Vibuthi",sub:"Local Guide · 84 reviews",text:"PAS Specialty Coffee, Agonda! Best pizza and pasta in South Goa! Beautiful place with rich ambience, warm welcome, and top-notch service. A must-visit spot!",color:"#c9a96e",light:"rgba(201,169,110,.15)"},
+    {name:"Sarah M",sub:"Local Guide · 24 reviews",text:"My new favourite cafe in Agonda. The moment you walk in you are greeted with a genuine welcome. There is an excellent variety and quality of food and drinks. At regular intervals your glass is filled with fresh filtered water. The staff — wonderful. Thank you.",color:"#7ea8d4",light:"rgba(126,168,212,.15)"},
+  ];
+
+  var VISIBLE = window.innerWidth <= 700 ? 1 : 3;
+  var track = document.getElementById('reviewTrack');
+  var prevSide = document.getElementById('prevReview');
+  var nextSide = document.getElementById('nextReview');
+  var total = reviews.length;
+  var index = VISIBLE;
+  var moving = false;
+
+  function initials(name){return name.split(' ').map(function(w){return w[0]}).join('').slice(0,2).toUpperCase()}
+  function makeCard(r){
+    var card = document.createElement('div');
+    card.className = 'review-card';
+    card.innerHTML =
+      '<div class="rev-top">'+
+        '<div class="rev-avatar" style="background:'+r.light+';color:'+r.color+'">'+initials(r.name)+'</div>'+
+        '<div class="rev-meta">'+
+          '<div class="rev-name">'+r.name+'</div>'+
+          '<div class="rev-sub">'+r.sub+'</div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="rev-stars">★★★★★</div>'+
+      '<div class="rev-text">'+r.text+'</div>';
+    return card;
+  }
+
+  function buildTrack(){
+    track.innerHTML='';
+    var arr=[];
+    for(var i=total-VISIBLE;i<total;i++) arr.push(reviews[i]);
+    for(var i=0;i<total;i++) arr.push(reviews[i]);
+    for(var i=0;i<VISIBLE;i++) arr.push(reviews[i]);
+    arr.forEach(function(r){track.appendChild(makeCard(r))});
+    index=VISIBLE;
+    jumpTo(index);
+  }
+
+  function getStep(){
+    var card=track.children[0];
+    return card.offsetWidth+16;
+  }
+
+  function jumpTo(i){
+    index=i;
+    track.style.transition='none';
+    track.style.transform='translateX(-'+(index*getStep())+'px)';
+    track.offsetHeight;
+  }
+
+  function slideTo(i){
+    if(moving) return;
+    moving=true;
+    index=i;
+    track.style.transition='transform .4s cubic-bezier(.4,0,.2,1)';
+    track.style.transform='translateX(-'+(index*getStep())+'px)';
+  }
+
+  track.addEventListener('transitionend',function(){
+    moving=false;
+    if(index<=VISIBLE-1){
+      jumpTo(index+total);
+    }else if(index>=total+VISIBLE){
+      jumpTo(index-total);
+    }
+  });
+
+  prevSide.addEventListener('click',function(){slideTo(index-1)});
+  nextSide.addEventListener('click',function(){slideTo(index+1)});
+
+  buildTrack();
+
+  window.addEventListener('resize',function(){
+    var newVis = window.innerWidth <= 700 ? 1 : 3;
+    if(newVis !== VISIBLE){
+      VISIBLE = newVis;
+      buildTrack();
+    }
+  });
+})();
+</script>
+<script async src="https://www.instagram.com/embed.js"></script>
+</body>
+</html>

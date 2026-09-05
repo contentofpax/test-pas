@@ -1,0 +1,309 @@
+<!DOCTYPE html><html lang="en"><head><script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5G8FXY3MS"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-Z5G8FXY3MS');</script><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>My Account — PAS Specialty Coffee</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="/favicon.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#0d63a9;--brand:#2b5faa;--pale:#f0f5fc;--cream:#faf8f4;--cdark:#f0ece3;--gold:#c9a96e;--goldl:#e8d5b0;--white:#fff;--txt:#0f2340;--mid:#2a4a7a;--muted:#6b85a8;--bluel:#dce8f7;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',sans-serif;--err:#e0685a;--ok:#4caf7d;--warn:#c9a96e;}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--txt);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;background:var(--blue);border-bottom:1px solid rgba(255,255,255,.08);transition:box-shadow .3s}
+nav.sc{box-shadow:0 4px 24px rgba(0,0,0,.3)}
+.nlogo img{height:28px;width:auto}
+.nlinks{display:flex;gap:26px;list-style:none;align-items:center}
+.nlinks a{font-size:10.5px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;position:relative}
+.nlinks a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nlinks a:hover,.nlinks a.act{color:var(--white)}.nlinks a:hover::after,.nlinks a.act::after{transform:scaleX(1)}
+.ncta{background:var(--gold)!important;color:var(--blue)!important;padding:8px 20px;border-radius:2px;font-size:10px!important;letter-spacing:.18em!important;font-weight:500!important}.ncta::after{display:none!important}.ncta:hover{background:var(--goldl)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:rgba(255,255,255,.8);transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}.hamburger.open span:nth-child(2){opacity:0}.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:190;background:var(--blue);border-bottom:1px solid rgba(255,255,255,.1);padding:20px 5vw 28px}
+.mobile-menu.open{display:block}.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:0}
+.mobile-menu a{display:block;padding:13px 0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.07)}
+.mobile-menu .mmcta{margin-top:16px;background:var(--gold);color:var(--blue)!important;text-align:center;border-radius:2px;padding:13px;border-bottom:none;font-weight:500}
+.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:14px}.eyeline{width:32px;height:1px;background:var(--brand)}.eyebrow span{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--brand);font-weight:500}
+.sectitle{font-family:var(--serif);font-size:clamp(26px,3.2vw,38px);font-weight:300;line-height:1.1;color:var(--txt);margin-bottom:6px}.sectitle em{font-style:italic;color:var(--brand)}
+.btnprimary{background:var(--gold);color:var(--blue);padding:13px 26px;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border-radius:2px;display:inline-block;transition:background .25s,transform .2s;border:none;cursor:pointer;font-family:var(--sans)}
+.btnprimary:hover:not(:disabled){background:var(--goldl);transform:translateY(-1px)}
+.btnprimary:disabled{opacity:.5;cursor:not-allowed}
+.btnoutd{border:1px solid var(--brand);color:var(--brand);padding:10px 20px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:none;text-decoration:none;border-radius:2px;display:inline-block;cursor:pointer;font-family:var(--sans);transition:all .2s}
+.btnoutd:hover:not(:disabled){background:var(--brand);color:var(--white)}
+.btnoutd:disabled{opacity:.4;cursor:not-allowed}
+@media(max-width:860px){.nlinks{display:none}.hamburger{display:flex}}
+
+.dwrap{padding:100px 6vw 80px;max-width:920px;margin:0 auto}
+.dhdr{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:36px}
+.dhdr p{font-size:13px;color:var(--muted);font-weight:300}
+.logout{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:underline;background:none;border:none;cursor:pointer;font-family:var(--sans)}
+
+.credit-band{background:var(--blue);border-radius:6px;padding:32px 36px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-bottom:40px;position:relative;overflow:hidden}
+.credit-band::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(255,255,255,.06)}
+.credit-lbl{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px}
+.credit-num{font-family:var(--serif);font-size:52px;font-weight:300;color:var(--white);line-height:1}
+.credit-sub{font-size:12px;color:rgba(255,255,255,.45);margin-top:4px}
+
+.card{background:var(--white);border:1px solid rgba(43,95,170,.1);border-radius:6px;padding:28px 30px;margin-bottom:28px}
+.card-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.card p.desc{font-size:13px;color:var(--muted);font-weight:300;line-height:1.7;margin-bottom:20px}
+
+.geo-status{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:4px;font-size:12px;margin-bottom:18px;background:var(--pale)}
+.geo-status.ok{background:rgba(76,175,125,.1);color:#2e8a5c}
+.geo-status.warn{background:rgba(201,169,110,.15);color:#8a6d2f}
+.geo-status.err{background:rgba(224,104,90,.1);color:#b8493a}
+.geo-dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex-shrink:0}
+
+.fg{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.fl{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.fi,.fs,.ft{background:var(--pale);border:1px solid rgba(43,95,170,.14);border-radius:2px;padding:12px 14px;font-size:14px;font-weight:300;color:var(--txt);font-family:var(--sans);outline:none;width:100%;transition:border-color .2s}
+.fi:focus,.fs:focus,.ft:focus{border-color:var(--brand)}
+.ft{resize:vertical;min-height:80px}
+.fs{cursor:pointer;appearance:none;-webkit-appearance:none;padding-right:38px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232a4a7a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:14px}
+
+.msg{font-size:12px;padding:10px 14px;border-radius:2px;margin-bottom:16px;line-height:1.6;display:none}
+.msg.show{display:block}
+.msg.err{background:rgba(224,104,90,.1);border:1px solid rgba(224,104,90,.3);color:#b8493a}
+.msg.ok{background:rgba(76,175,125,.1);border:1px solid rgba(76,175,125,.3);color:#2e8a5c}
+
+.list-item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--pale)}
+.list-item:last-child{border-bottom:none}
+.li-main{min-width:0}
+.li-title{font-size:13px;color:var(--txt);font-weight:400}
+.li-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.badge{font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:5px 11px;border-radius:20px;white-space:nowrap;font-weight:500}
+.badge.pending{background:rgba(201,169,110,.15);color:#8a6d2f}
+.badge.approved{background:rgba(76,175,125,.15);color:#2e8a5c}
+.badge.rejected{background:rgba(224,104,90,.12);color:#b8493a}
+.badge.redeemed{background:rgba(107,133,168,.15);color:var(--muted)}
+.badge.available{background:rgba(43,95,170,.12);color:var(--brand)}
+
+.coupon-code{font-family:var(--serif);font-size:22px;letter-spacing:.08em;color:var(--brand);font-weight:600}
+.empty{font-size:12px;color:var(--muted);font-style:italic;padding:8px 0}
+.redeem-row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+</style></head><body>
+<nav id="nav">
+  <a href="/" class="nlogo"><img src="/logo.png" alt="PAS"></a>
+  <ul class="nlinks"><li><a href="/">Home</a></li><li><a href="/menu/">Menu</a></li><li><a href="/gallery/">Gallery</a></li><li><a href="/contact/">Contact</a></li><li><a href="/portal/dashboard/" class="act">My Account</a></li><li><a href="/reservations/" class="ncta">Reserve a Table</a></li></ul>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mmenu"><ul><li><a href="/" onclick="toggleMenu()">Home</a></li><li><a href="/menu/" onclick="toggleMenu()">Menu</a></li><li><a href="/gallery/" onclick="toggleMenu()">Gallery</a></li><li><a href="/contact/" onclick="toggleMenu()">Contact</a></li><li><a href="/portal/dashboard/" onclick="toggleMenu()">My Account</a></li>
+  <li><a href="/reservations/" class="mmcta" onclick="toggleMenu()">Reserve a Table</a></li>
+</ul></div>
+
+<div class="dwrap">
+  <div class="dhdr">
+    <div>
+      <div class="eyebrow"><div class="eyeline"></div><span>My Account</span></div>
+      <h1 class="sectitle">Welcome back, <em id="custName">there</em>.</h1>
+      <p>Track your visits, earn credits, and redeem coupons in person at PAS.</p>
+    </div>
+    <button class="logout" onclick="doLogout()">Log Out</button>
+  </div>
+
+  <div class="credit-band">
+    <div>
+      <div class="credit-lbl">Your Credits</div>
+      <div class="credit-num" id="creditNum">0</div>
+      <div class="credit-sub" id="redeemHint">Earn 50 credits for ₹100 off your next bill</div>
+    </div>
+    <button class="btnprimary" id="redeemBtn" onclick="requestRedeem()">Redeem 50 Credits</button>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr"><h2 class="sectitle" style="margin-bottom:0;font-size:22px">Claim <em>a visit.</em></h2></div>
+    <p class="desc">Left a Google review or tagged us in an Instagram post/story? Claim it here and our team will approve your credits.</p>
+
+    <div class="geo-status" id="geoStatus"><div class="geo-dot"></div><span id="geoText">Getting ready...</span></div>
+
+    <div class="msg err" id="claimErr"></div>
+    <div class="msg ok" id="claimOk">Thanks! Your claim is in for review — credits will appear once approved.</div>
+
+    <div class="fg"><label class="fl">What did you post?</label>
+      <select class="fs" id="proofType">
+        <option value="google_review">Google Review</option>
+        <option value="instagram_post">Instagram Post</option>
+        <option value="instagram_story">Instagram Story</option>
+      </select>
+    </div>
+    <div class="fg"><label class="fl">Link or Instagram handle (optional if uploading a photo)</label><input type="text" class="fi" id="proofLink" placeholder="https://... or @yourhandle"></div>
+    <div class="fg"><label class="fl">Or upload a photo — your bill, or a screenshot of the review/post</label><input type="file" class="fi" id="proofPhoto" accept="image/*"></div>
+    <div class="fg"><label class="fl">Note (optional)</label><textarea class="ft" id="proofNote" placeholder="Anything that helps us find it, e.g. review name or post caption"></textarea></div>
+    <button class="btnprimary" id="claimBtn" onclick="submitClaim()">Submit Claim</button>
+  </div>
+
+  <div class="card">
+    <h2 class="sectitle" style="margin-bottom:16px;font-size:22px">Your <em>claims.</em></h2>
+    <div id="visitsList"><div class="empty">No claims yet.</div></div>
+  </div>
+
+  <div class="card">
+    <h2 class="sectitle" style="margin-bottom:16px;font-size:22px">Your <em>coupons.</em></h2>
+    <div id="couponsList"><div class="empty">No coupons yet — redeem credits above to get one.</div></div>
+  </div>
+</div>
+
+<footer style="background:var(--blue);padding:40px 8vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;border-top:1px solid rgba(255,255,255,.08)">
+  <div><img src="/logofooter.png" alt="PAS" style="height:22px;width:auto;opacity:.65"></div>
+  <ul style="display:flex;gap:20px;list-style:none;flex-wrap:wrap">
+    <li><a href="/" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none">Home</a></li>
+    <li><a href="/menu/" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none">Menu</a></li>
+    <li><a href="/reservations/" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none">Reserve</a></li>
+    <li><a href="/contact/" style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none">Contact</a></li>
+  </ul>
+  <div style="font-size:11px;color:rgba(255,255,255,.22)">© 2026 Pax Edutainment Pvt. Ltd. · Agonda, Goa</div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>40));
+function toggleMenu(){const m=document.getElementById('mmenu');const h=document.querySelector('.hamburger');m.classList.toggle('open');h.classList.toggle('open');}
+</script>
+
+<script type="module">
+import { auth, db, storage, CAFE_LAT, CAFE_LNG, CAFE_RADIUS_METERS, REDEEM_COST, distanceMeters } from "/portal/firebase-init.js";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { doc, getDoc, collection, addDoc, query, where, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
+
+let currentUser = null;
+let currentGeo = null;
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) { location.href = '/portal/?next=' + encodeURIComponent(location.pathname); return; }
+  currentUser = user;
+  const snap = await getDoc(doc(db, 'customers', user.uid));
+  if (!snap.exists() || !snap.data().name || !snap.data().email) {
+    location.href = '/portal/?next=' + encodeURIComponent(location.pathname);
+    return;
+  }
+  document.getElementById('custName').textContent = snap.data().name.split(' ')[0];
+  onSnapshot(doc(db, 'customers', user.uid), (s) => {
+    const credits = (s.data() && s.data().credits) || 0;
+    document.getElementById('creditNum').textContent = credits;
+    document.getElementById('redeemBtn').disabled = credits < REDEEM_COST;
+  });
+  loadVisits(user.uid);
+  loadCoupons(user.uid);
+  checkGeo();
+});
+
+window.doLogout = function(){ signOut(auth).then(() => location.href = '/portal/'); };
+
+function checkGeo(){
+  const el = document.getElementById('geoStatus');
+  const txt = document.getElementById('geoText');
+  const done = () => { el.className = 'geo-status ok'; txt.textContent = 'Ready — you can submit your claim below.'; };
+  if (!navigator.geolocation) {
+    currentGeo = null;
+    done();
+    return;
+  }
+  navigator.geolocation.getCurrentPosition((pos) => {
+    const d = distanceMeters(pos.coords.latitude, pos.coords.longitude, CAFE_LAT, CAFE_LNG);
+    currentGeo = { lat: pos.coords.latitude, lng: pos.coords.longitude, distance: Math.round(d) };
+    done();
+  }, () => {
+    currentGeo = null;
+    done();
+  });
+}
+
+async function loadVisits(uid){
+  const list = document.getElementById('visitsList');
+  const q = query(collection(db, 'visits'), where('uid', '==', uid), orderBy('submittedAt', 'desc'));
+  onSnapshot(q, (snap) => {
+    if (snap.empty) { list.innerHTML = '<div class="empty">No claims yet.</div>'; return; }
+    list.innerHTML = '';
+    snap.forEach((d) => {
+      const v = d.data();
+      const date = v.submittedAt ? v.submittedAt.toDate().toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' }) : '';
+      const typeLabel = { google_review: 'Google Review', instagram_post: 'Instagram Post', instagram_story: 'Instagram Story' }[v.proofType] || v.proofType;
+      const row = document.createElement('div');
+      row.className = 'list-item';
+      row.innerHTML = '<div class="li-main"><div class="li-title">' + typeLabel + '</div><div class="li-sub">' + date + (v.status === 'approved' ? ' · +' + (v.creditsAwarded||0) + ' credits' : '') + '</div></div><span class="badge ' + v.status + '">' + v.status + '</span>';
+      list.appendChild(row);
+    });
+  }, () => { list.innerHTML = '<div class="empty">Couldn’t load claims right now.</div>'; });
+}
+
+async function loadCoupons(uid){
+  const list = document.getElementById('couponsList');
+  const q = query(collection(db, 'coupons'), where('uid', '==', uid), orderBy('createdAt', 'desc'));
+  onSnapshot(q, (snap) => {
+    if (snap.empty) { list.innerHTML = '<div class="empty">No coupons yet — redeem credits above to get one.</div>'; return; }
+    list.innerHTML = '';
+    snap.forEach((d) => {
+      const c = d.data();
+      const row = document.createElement('div');
+      row.className = 'list-item';
+      row.innerHTML = '<div class="li-main"><div class="coupon-code">' + c.code + '</div><div class="li-sub">Show this to staff at the counter</div></div><span class="badge ' + (c.status === 'redeemed' ? 'redeemed' : 'available') + '">' + c.status + '</span>';
+      list.appendChild(row);
+    });
+  }, () => { list.innerHTML = '<div class="empty">Couldn’t load coupons right now.</div>'; });
+}
+
+window.submitClaim = async function(){
+  const errEl = document.getElementById('claimErr');
+  const okEl = document.getElementById('claimOk');
+  errEl.classList.remove('show'); okEl.classList.remove('show');
+  const proofType = document.getElementById('proofType').value;
+  const proofLink = document.getElementById('proofLink').value.trim();
+  const proofNote = document.getElementById('proofNote').value.trim();
+  const fileInput = document.getElementById('proofPhoto');
+  const file = fileInput.files[0];
+  if (!proofLink && !file) { errEl.textContent = 'Please add a link/handle, or upload a photo.'; errEl.classList.add('show'); return; }
+  if (file && file.size > 8 * 1024 * 1024) { errEl.textContent = 'Photo is too large — please use one under 8MB.'; errEl.classList.add('show'); return; }
+  const btn = document.getElementById('claimBtn');
+  btn.disabled = true; btn.textContent = file ? 'Uploading photo...' : 'Submitting...';
+  try {
+    let proofImageUrl = null;
+    if (file) {
+      const path = 'proofs/' + currentUser.uid + '/' + Date.now() + '-' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+      const fileRef = ref(storage, path);
+      await uploadBytes(fileRef, file);
+      proofImageUrl = await getDownloadURL(fileRef);
+    }
+    btn.textContent = 'Submitting...';
+    await addDoc(collection(db, 'visits'), {
+      uid: currentUser.uid,
+      phone: currentUser.phoneNumber,
+      proofType, proofLink, proofNote, proofImageUrl,
+      lat: currentGeo ? currentGeo.lat : null,
+      lng: currentGeo ? currentGeo.lng : null,
+      distanceMeters: currentGeo ? currentGeo.distance : null,
+      status: 'pending',
+      creditsAwarded: 0,
+      submittedAt: serverTimestamp()
+    });
+    document.getElementById('proofLink').value = '';
+    document.getElementById('proofNote').value = '';
+    fileInput.value = '';
+    okEl.classList.add('show');
+  } catch (e) {
+    errEl.textContent = 'Something went wrong submitting your claim. Please try again.';
+    errEl.classList.add('show');
+    console.error(e);
+  } finally {
+    btn.disabled = false; btn.textContent = 'Submit Claim';
+  }
+};
+
+window.requestRedeem = async function(){
+  const btn = document.getElementById('redeemBtn');
+  btn.disabled = true; btn.textContent = 'Requesting...';
+  try {
+    await addDoc(collection(db, 'redemptionRequests'), {
+      uid: currentUser.uid,
+      phone: currentUser.phoneNumber,
+      creditsCost: REDEEM_COST,
+      status: 'pending',
+      createdAt: serverTimestamp()
+    });
+    btn.textContent = 'Requested — show staff';
+  } catch (e) {
+    btn.textContent = 'Redeem ' + REDEEM_COST + ' Credits';
+    btn.disabled = false;
+    console.error(e);
+  }
+};
+</script>
+</body></html>

@@ -1,0 +1,63 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // TODO: replace with the real mobile numbers (E.164 format, e.g. +9197XXXXXXXX)
+    // of the owner/staff who should have access to the /portal/staff/ dashboard.
+    function isStaff() {
+      return request.auth != null &&
+        request.auth.token.phone_number in [
+          '+917869196341'
+        ];
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // TODO: keep this in sync with REDEEM_COST in portal/firebase-init.js
+    function redeemCost() {
+      return 50;
+    }
+
+    match /customers/{uid} {
+      allow read: if isSignedIn() && (request.auth.uid == uid || isStaff());
+      allow create: if isSignedIn() && request.auth.uid == uid
+                    && request.resource.data.credits == 0;
+      allow update: if isStaff()
+                    || (isSignedIn() && request.auth.uid == uid
+                        && request.resource.data.credits == resource.data.credits
+                        && request.resource.data.phone == resource.data.phone);
+      allow delete: if false;
+    }
+
+    match /visits/{visitId} {
+      allow read: if isSignedIn() && (resource.data.uid == request.auth.uid || isStaff());
+      allow create: if isSignedIn()
+                    && request.resource.data.uid == request.auth.uid
+                    && request.resource.data.status == 'pending'
+                    && request.resource.data.creditsAwarded == 0
+                    && request.resource.data.proofType in ['google_review', 'instagram_post', 'instagram_story'];
+      allow update: if isStaff();
+      allow delete: if false;
+    }
+
+    match /redemptionRequests/{reqId} {
+      allow read: if isSignedIn() && (resource.data.uid == request.auth.uid || isStaff());
+      allow create: if isSignedIn()
+                    && request.resource.data.uid == request.auth.uid
+                    && request.resource.data.status == 'pending'
+                    && request.resource.data.creditsCost == redeemCost()
+                    && get(/databases/$(database)/documents/customers/$(request.auth.uid)).data.credits >= redeemCost();
+      allow update: if isStaff();
+      allow delete: if false;
+    }
+
+    match /coupons/{couponId} {
+      allow read: if isSignedIn() && (resource.data.uid == request.auth.uid || isStaff());
+      allow create: if isStaff();
+      allow update: if isStaff();
+      allow delete: if false;
+    }
+  }
+}

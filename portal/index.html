@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="en"><head><script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5G8FXY3MS"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-Z5G8FXY3MS');</script><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>My Account — PAS Specialty Coffee</title>
+<meta name="description" content="Sign in to your PAS Specialty Coffee account to track visits, earn credits, and redeem coupons.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="/favicon.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#0d63a9;--brand:#2b5faa;--pale:#f0f5fc;--cream:#faf8f4;--cdark:#f0ece3;--gold:#c9a96e;--goldl:#e8d5b0;--white:#fff;--txt:#0f2340;--mid:#2a4a7a;--muted:#6b85a8;--bluel:#dce8f7;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Outfit',sans-serif;--err:#e0685a;--ok:#4caf7d;}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--txt);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;background:var(--blue);border-bottom:1px solid rgba(255,255,255,.08);transition:box-shadow .3s}
+nav.sc{box-shadow:0 4px 24px rgba(0,0,0,.3)}
+.nlogo img{height:28px;width:auto}
+.nlinks{display:flex;gap:26px;list-style:none;align-items:center}
+.nlinks a{font-size:10.5px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;position:relative}
+.nlinks a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nlinks a:hover,.nlinks a.act{color:var(--white)}.nlinks a:hover::after,.nlinks a.act::after{transform:scaleX(1)}
+.ncta{background:var(--gold)!important;color:var(--blue)!important;padding:8px 20px;border-radius:2px;font-size:10px!important;letter-spacing:.18em!important;font-weight:500!important}.ncta::after{display:none!important}.ncta:hover{background:var(--goldl)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:rgba(255,255,255,.8);transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}.hamburger.open span:nth-child(2){opacity:0}.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;z-index:190;background:var(--blue);border-bottom:1px solid rgba(255,255,255,.1);padding:20px 5vw 28px}
+.mobile-menu.open{display:block}.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:0}
+.mobile-menu a{display:block;padding:13px 0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.07)}
+.mobile-menu .mmcta{margin-top:16px;background:var(--gold);color:var(--blue)!important;text-align:center;border-radius:2px;padding:13px;border-bottom:none;font-weight:500}
+.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:18px;justify-content:center}.eyeline{width:32px;height:1px;background:var(--gold)}.eyebrow span{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.sectitle{font-family:var(--serif);font-size:clamp(28px,3.8vw,44px);font-weight:300;line-height:1.1;color:var(--white);margin-bottom:10px}.sectitle em{font-style:italic;color:var(--goldl)}
+.btnprimary{background:var(--gold);color:var(--blue);padding:13px 30px;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border-radius:2px;display:inline-block;transition:background .25s,transform .2s;border:none;cursor:pointer;font-family:var(--sans);width:100%}
+.btnprimary:hover:not(:disabled){background:var(--goldl);transform:translateY(-1px)}
+.btnprimary:disabled{opacity:.5;cursor:not-allowed}
+.btnlink{background:none;border:none;color:rgba(255,255,255,.55);font-size:11px;letter-spacing:.08em;text-decoration:underline;cursor:pointer;font-family:var(--sans);padding:6px}
+.btnlink:disabled{opacity:.4;cursor:not-allowed;text-decoration:none}
+.rev{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}.rev.vis{opacity:1;transform:translateY(0)}
+@media(max-width:860px){.nlinks{display:none}.hamburger{display:flex}}
+
+.pwrap{background:var(--blue);min-height:calc(100vh - 68px);padding:68px 6vw 100px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.pwrap::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;border:1px solid rgba(255,255,255,.04);pointer-events:none}
+.pcard{max-width:400px;width:100%;position:relative;z-index:1;padding:44px 0}
+.pcard-hdr{text-align:center;margin-bottom:36px}
+.pcard-hdr p{font-size:13px;color:rgba(255,255,255,.5);font-weight:300;line-height:1.7;margin-top:8px}
+.fg{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.fl{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.42)}
+.fi{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:2px;padding:13px 16px;font-size:15px;font-weight:300;color:var(--white);font-family:var(--sans);outline:none;width:100%;transition:border-color .2s,background .2s;letter-spacing:.02em}
+.fi::placeholder{color:rgba(255,255,255,.22)}
+.fi:focus{border-color:rgba(255,255,255,.38);background:rgba(255,255,255,.1)}
+.fi.otp{text-align:center;font-size:22px;letter-spacing:.4em;font-family:var(--sans)}
+.phone-prefix{display:flex;align-items:stretch}
+.phone-prefix span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);border-right:none;border-radius:2px 0 0 2px;padding:13px 12px;font-size:15px;color:rgba(255,255,255,.6);display:flex;align-items:center}
+.phone-prefix .fi{border-radius:0 2px 2px 0}
+.msg{font-size:12px;padding:10px 14px;border-radius:2px;margin-bottom:16px;line-height:1.6;display:none}
+.msg.show{display:block}
+.msg.err{background:rgba(224,104,90,.12);border:1px solid rgba(224,104,90,.35);color:#f3a99e}
+.msg.ok{background:rgba(76,175,125,.12);border:1px solid rgba(76,175,125,.35);color:#8fdcb2}
+.step{display:none}
+.step.active{display:block}
+.pfoot{text-align:center;margin-top:18px}
+#recaptcha-container{display:flex;justify-content:center;margin-bottom:12px}
+footer{background:var(--blue);padding:40px 8vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;border-top:1px solid rgba(255,255,255,.08)}
+.flogo img{height:22px;width:auto;opacity:.65}.fnav{display:flex;gap:20px;list-style:none;flex-wrap:wrap}.fnav a{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}.fnav a:hover{color:var(--gold)}.fcopy{font-size:11px;color:rgba(255,255,255,.22)}
+</style></head><body>
+<nav id="nav">
+  <a href="/" class="nlogo"><img src="/logo.png" alt="PAS"></a>
+  <ul class="nlinks"><li><a href="/">Home</a></li><li><a href="/menu/">Menu</a></li><li><a href="/gallery/">Gallery</a></li><li><a href="/contact/">Contact</a></li><li><a href="/portal/" class="act">My Account</a></li><li><a href="/reservations/" class="ncta">Reserve a Table</a></li></ul>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mmenu"><ul><li><a href="/" onclick="toggleMenu()">Home</a></li><li><a href="/menu/" onclick="toggleMenu()">Menu</a></li><li><a href="/gallery/" onclick="toggleMenu()">Gallery</a></li><li><a href="/contact/" onclick="toggleMenu()">Contact</a></li><li><a href="/portal/" onclick="toggleMenu()">My Account</a></li>
+  <li><a href="/reservations/" class="mmcta" onclick="toggleMenu()">Reserve a Table</a></li>
+</ul></div>
+
+<div class="pwrap">
+  <div class="pcard">
+
+    <div class="step active" id="stepPhone">
+      <div class="pcard-hdr rev vis"><div class="eyebrow"><div class="eyeline"></div><span>My Account</span><div class="eyeline"></div></div>
+        <h1 class="sectitle">Sign <em>in.</em></h1>
+        <p>Enter your mobile number and we'll send you a one-time code.</p>
+      </div>
+      <div class="msg err" id="phoneErr"></div>
+      <div class="fg">
+        <label class="fl">Mobile number</label>
+        <div class="phone-prefix">
+          <span>+91</span>
+          <input type="tel" class="fi" id="phoneInput" placeholder="10 digit mobile number" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)">
+        </div>
+      </div>
+      <div id="recaptcha-container"></div>
+      <button class="btnprimary" id="sendOtpBtn" onclick="sendOtp()">Send Code</button>
+    </div>
+
+    <div class="step" id="stepOtp">
+      <div class="pcard-hdr"><div class="eyebrow"><div class="eyeline"></div><span>Verify</span><div class="eyeline"></div></div>
+        <h1 class="sectitle">Enter <em>the code.</em></h1>
+        <p>We sent a 6-digit code to <span id="otpPhoneLabel"></span>.</p>
+      </div>
+      <div class="msg err" id="otpErr"></div>
+      <div class="fg">
+        <label class="fl">6-digit code</label>
+        <input type="text" class="fi otp" id="otpInput" placeholder="------" maxlength="6" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,6)">
+      </div>
+      <button class="btnprimary" id="verifyBtn" onclick="verifyOtp()">Verify & Continue</button>
+      <div class="pfoot">
+        <button class="btnlink" id="resendBtn" onclick="sendOtp(true)">Resend code (<span id="resendTimer">30</span>s)</button>
+        <br><button class="btnlink" onclick="backToPhone()">Change number</button>
+      </div>
+    </div>
+
+    <div class="step" id="stepProfile">
+      <div class="pcard-hdr"><div class="eyebrow"><div class="eyeline"></div><span>Almost There</span><div class="eyeline"></div></div>
+        <h1 class="sectitle">Your <em>details.</em></h1>
+        <p>Just so we know who to thank. This only takes a moment.</p>
+      </div>
+      <div class="msg err" id="profileErr"></div>
+      <div class="fg"><label class="fl">Full name</label><input type="text" class="fi" id="nameInput" placeholder="Your name"></div>
+      <div class="fg"><label class="fl">Email address</label><input type="email" class="fi" id="emailInput" placeholder="you@example.com" oninput="this.value=this.value.toLowerCase()"></div>
+      <button class="btnprimary" id="profileBtn" onclick="saveProfile()">Continue to My Account</button>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="flogo"><img src="/logofooter.png" alt="PAS"></div>
+  <ul class="fnav"><li><a href="/">Home</a></li><li><a href="/menu/">Menu</a></li><li><a href="/gallery/">Gallery</a></li><li><a href="/reservations/">Reserve</a></li><li><a href="/contact/">Contact</a></li></ul>
+  <div class="fcopy">© 2026 Pax Edutainment Pvt. Ltd. · Agonda, Goa</div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>40));
+function toggleMenu(){const m=document.getElementById('mmenu');const h=document.querySelector('.hamburger');m.classList.toggle('open');h.classList.toggle('open');}
+</script>
+
+<script type="module">
+import { auth, db } from "/portal/firebase-init.js";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+let confirmationResult = null;
+let resendInterval = null;
+
+const params = new URLSearchParams(location.search);
+const nextUrl = params.get('next') || '/portal/dashboard/';
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) return;
+  const snap = await getDoc(doc(db, 'customers', user.uid));
+  if (snap.exists() && snap.data().name && snap.data().email) {
+    location.href = nextUrl;
+  }
+});
+
+function showStep(id){
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function showErr(id, text){
+  const el = document.getElementById(id);
+  el.textContent = text;
+  el.classList.add('show');
+}
+function clearErr(id){
+  document.getElementById(id).classList.remove('show');
+}
+
+function getVerifier(){
+  document.getElementById('recaptcha-container').innerHTML = '';
+  return new RecaptchaVerifier(auth, 'recaptcha-container', { size: 'invisible' });
+}
+
+window.sendOtp = async function(isResend){
+  clearErr('phoneErr'); clearErr('otpErr');
+  const phone = document.getElementById('phoneInput').value;
+  if (!/^\d{10}$/.test(phone)) { showErr('phoneErr', 'Please enter a valid 10-digit mobile number.'); return; }
+  const btn = isResend ? document.getElementById('resendBtn') : document.getElementById('sendOtpBtn');
+  btn.disabled = true;
+  try {
+    const verifier = getVerifier();
+    confirmationResult = await signInWithPhoneNumber(auth, '+91' + phone, verifier);
+    document.getElementById('otpPhoneLabel').textContent = '+91 ' + phone;
+    document.getElementById('otpInput').value = '';
+    showStep('stepOtp');
+    startResendTimer();
+  } catch (e) {
+    showErr('phoneErr', e.code === 'auth/too-many-requests' ? 'Too many attempts. Please try again later.' : 'Could not send code. Please check the number and try again.');
+    console.error(e);
+  } finally {
+    if (!isResend) btn.disabled = false;
+  }
+};
+
+function startResendTimer(){
+  const resendBtn = document.getElementById('resendBtn');
+  let t = 30;
+  resendBtn.disabled = true;
+  resendBtn.innerHTML = 'Resend code (<span id="resendTimer">' + t + '</span>s)';
+  clearInterval(resendInterval);
+  resendInterval = setInterval(() => {
+    t--;
+    const timerEl = document.getElementById('resendTimer');
+    if (timerEl) timerEl.textContent = t;
+    if (t <= 0) {
+      clearInterval(resendInterval);
+      resendBtn.disabled = false;
+      resendBtn.textContent = 'Resend code';
+    }
+  }, 1000);
+}
+
+window.backToPhone = function(){
+  clearInterval(resendInterval);
+  showStep('stepPhone');
+};
+
+window.verifyOtp = async function(){
+  clearErr('otpErr');
+  const code = document.getElementById('otpInput').value;
+  if (code.length !== 6) { showErr('otpErr', 'Please enter the 6-digit code.'); return; }
+  const btn = document.getElementById('verifyBtn');
+  btn.disabled = true; btn.textContent = 'Verifying...';
+  try {
+    const cred = await confirmationResult.confirm(code);
+    const uid = cred.user.uid;
+    const snap = await getDoc(doc(db, 'customers', uid));
+    if (snap.exists() && snap.data().name && snap.data().email) {
+      location.href = nextUrl;
+    } else {
+      showStep('stepProfile');
+    }
+  } catch (e) {
+    showErr('otpErr', 'That code didn\'t match. Please try again.');
+    btn.disabled = false; btn.textContent = 'Verify & Continue';
+  }
+};
+
+window.saveProfile = async function(){
+  clearErr('profileErr');
+  const name = document.getElementById('nameInput').value.trim();
+  const email = document.getElementById('emailInput').value.trim();
+  if (!name) { showErr('profileErr', 'Please enter your name.'); return; }
+  if (!/^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/i.test(email)) { showErr('profileErr', 'Please enter a valid email address.'); return; }
+  const btn = document.getElementById('profileBtn');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  try {
+    const user = auth.currentUser;
+    const ref = doc(db, 'customers', user.uid);
+    const existing = await getDoc(ref);
+    await setDoc(ref, {
+      phone: user.phoneNumber,
+      name, email,
+      credits: existing.exists() ? (existing.data().credits || 0) : 0,
+      createdAt: existing.exists() ? existing.data().createdAt : serverTimestamp(),
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+    location.href = nextUrl;
+  } catch (e) {
+    showErr('profileErr', 'Something went wrong saving your details. Please try again.');
+    btn.disabled = false; btn.textContent = 'Continue to My Account';
+    console.error(e);
+  }
+};
+</script>
+</body></html>
