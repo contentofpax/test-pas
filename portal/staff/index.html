@@ -128,7 +128,7 @@ function loadVisits(){
       const distText = v.distanceMeters == null ? 'no location' : (v.distanceMeters <= 300 ? '<span class="dist-ok">' + v.distanceMeters + 'm away</span>' : '<span class="dist-warn">' + (v.distanceMeters/1000).toFixed(1) + 'km away</span>');
       const row = document.createElement('div');
       row.className = 'req';
-      const photoHtml = v.proofImageUrl ? '<a href="' + v.proofImageUrl + '" target="_blank" rel="noopener noreferrer"><img src="' + v.proofImageUrl + '" alt="Uploaded proof" style="max-width:140px;max-height:100px;border-radius:4px;display:block;margin-top:8px;object-fit:cover"></a>' : '';
+      const photoHtml = v.proofImageUrl ? '<a href="' + v.proofImageUrl + '" target="_blank" rel="noopener noreferrer"><img src="' + v.proofImageUrl + '" alt="Uploaded proof" loading="lazy" style="max-width:140px;max-height:100px;border-radius:4px;display:block;margin-top:8px;object-fit:cover"></a>' : '';
       const billText = v.proofType === 'bill_amount' ? ' &middot; Bill: ₹' + (v.billAmount || 0) : '';
       const suggestedCredits = creditsForProof(v.proofType, v.billAmount);
       row.innerHTML =
@@ -187,11 +187,13 @@ function loadVisitHistory(){
       const v = d.data();
       const date = v.reviewedAt ? toJsDate(v.reviewedAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
       const creditsText = v.status === 'approved' ? ' &middot; +' + (v.creditsAwarded || 0) + ' credits' : '';
+      const photoHtml = v.proofImageUrl ? '<a href="' + v.proofImageUrl + '" target="_blank" rel="noopener noreferrer"><img src="' + v.proofImageUrl + '" alt="Uploaded proof" loading="lazy" style="max-width:100px;max-height:70px;border-radius:4px;display:block;margin-top:8px;object-fit:cover"></a>' : '';
       const row = document.createElement('div');
       row.className = 'req';
       row.innerHTML =
         '<div class="req-main"><div class="req-title">' + escapeHtml(v.name) + ' &middot; ' + escapeHtml(v.phone) + ' &middot; ' + typeLabel(v.proofType) + creditsText + '</div>' +
           '<div class="req-sub">' + date + '</div>' +
+          photoHtml +
         '</div>' +
         '<span class="badge ' + (v.status === 'approved' ? 'approved' : 'rejected') + '">' + v.status + '</span>';
       list.appendChild(row);

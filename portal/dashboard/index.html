@@ -183,7 +183,7 @@ function toggleMenu(){const m=document.getElementById('mmenu');const h=document.
 <script type="module">
 import { auth, db, storage, CAFE_LAT, CAFE_LNG, CAFE_RADIUS_METERS, MIN_REDEEM_CREDITS, MAX_REDEEM_CREDITS, creditsForProof, STAFF_PHONES, isCouponExpired, toJsDate, distanceMeters } from "/test-pas/portal/firebase-init.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import { doc, getDoc, setDoc, collection, addDoc, getDocs, query, where, orderBy, onSnapshot, serverTimestamp, increment, writeBatch } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { doc, getDoc, setDoc, collection, addDoc, getDocs, query, where, orderBy, limit, onSnapshot, serverTimestamp, increment, writeBatch } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
 
 let currentUser = null;
@@ -278,7 +278,7 @@ async function loadVisits(uid){
   const grantsBySource = {};
   gsnap.forEach((g) => { const gd = g.data(); if (gd.sourceId) grantsBySource[gd.sourceId] = gd; });
 
-  const q = query(collection(db, 'visits'), where('uid', '==', uid), orderBy('submittedAt', 'desc'));
+  const q = query(collection(db, 'visits'), where('uid', '==', uid), orderBy('submittedAt', 'desc'), limit(50));
   onSnapshot(q, (snap) => {
     if (snap.empty) { list.innerHTML = '<div class="empty">No claims yet.</div>'; return; }
     list.innerHTML = '';
@@ -305,7 +305,7 @@ async function loadVisits(uid){
 
 async function loadCoupons(uid){
   const list = document.getElementById('couponsList');
-  const q = query(collection(db, 'coupons'), where('uid', '==', uid), orderBy('createdAt', 'desc'));
+  const q = query(collection(db, 'coupons'), where('uid', '==', uid), orderBy('createdAt', 'desc'), limit(50));
   onSnapshot(q, (snap) => {
     if (snap.empty) { list.innerHTML = '<div class="empty">No coupons yet — redeem credits above to get one.</div>'; return; }
     list.innerHTML = '';
