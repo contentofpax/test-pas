@@ -111,7 +111,7 @@ nav.sc{box-shadow:0 4px 24px rgba(0,0,0,.3)}
       <div class="credit-sub" id="redeemCodeBox" style="display:none;margin-top:10px;font-size:15px;color:#fff"></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-      <input type="number" id="redeemAmount" placeholder="Amount" min="200" step="1" style="width:110px;padding:10px 12px;border-radius:2px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;font-family:var(--sans);font-size:14px;text-align:center">
+      <input type="text" inputmode="numeric" id="redeemAmount" placeholder="Amount" oninput="this.value=this.value.replace(/[^0-9]/g,'')" style="width:110px;padding:10px 12px;border-radius:2px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;font-family:var(--sans);font-size:14px;text-align:center">
       <button class="btnprimary" id="redeemBtn" onclick="requestRedeem()">Redeem</button>
     </div>
   </div>
@@ -192,7 +192,6 @@ let currentCredits = 0;
 let currentGeo = null;
 
 document.getElementById('redeemHint').textContent = 'Redeem ' + MIN_REDEEM_CREDITS + '+ credits, 1:1 for rupees off your next bill';
-document.getElementById('redeemAmount').min = MIN_REDEEM_CREDITS;
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) { location.href = '/test-pas/portal/?next=' + encodeURIComponent(location.pathname); return; }
@@ -215,7 +214,6 @@ onAuthStateChanged(auth, async (user) => {
     currentCredits = credits;
     document.getElementById('creditNum').textContent = credits;
     document.getElementById('redeemBtn').disabled = credits < MIN_REDEEM_CREDITS;
-    document.getElementById('redeemAmount').max = credits;
   });
   processExpiredGrants(user.uid);
   loadVisits(user.uid);
