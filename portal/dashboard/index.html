@@ -141,7 +141,8 @@ nav.sc{box-shadow:0 4px 24px rgba(0,0,0,.3)}
   </div>
 
   <div class="card">
-    <h2 class="sectitle" style="margin-bottom:16px;font-size:22px">Your <em>claims.</em></h2>
+    <h2 class="sectitle" style="margin-bottom:6px;font-size:22px">Your <em>claims.</em></h2>
+    <p class="desc" style="margin-bottom:16px">Claims are typically approved within 24 hours of being submitted.</p>
     <div id="visitsList"><div class="empty">No claims yet.</div></div>
   </div>
 
@@ -278,8 +279,8 @@ async function loadCoupons(uid){
       const badgeClass = c.status === 'redeemed' ? 'redeemed' : (expired ? 'rejected' : 'available');
       const badgeText = c.status === 'redeemed' ? 'redeemed' : (expired ? 'expired' : 'available');
       const fmtDate = (v) => (v.toDate ? v.toDate() : new Date(v)).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
-      const generatedText = c.createdAt ? ' · generated ' + fmtDate(c.createdAt) : '';
-      const expiryText = c.expiresAt ? ' · valid until ' + fmtDate(c.expiresAt) : '';
+      const generatedText = c.createdAt ? ' · Generated ' + fmtDate(c.createdAt) : '';
+      const expiryText = c.expiresAt ? ' · Valid until ' + fmtDate(c.expiresAt) : '';
       const row = document.createElement('div');
       row.className = 'list-item';
       row.innerHTML = '<div class="li-main"><div class="coupon-code">' + c.code + '</div><div class="li-sub">Show this to staff at the counter' + generatedText + expiryText + '</div></div><span class="badge ' + badgeClass + '">' + badgeText + '</span>';
