@@ -70,7 +70,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--txt);margin:0}
 </div>
 
 <script type="module">
-import { auth, db, creditsForProof } from "/test-pas/portal/firebase-init.js";
+import { auth, db, creditsForProof, couponExpiryDate, isCouponExpired } from "/test-pas/portal/firebase-init.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { collection, query, where, orderBy, onSnapshot, getDocs, doc, updateDoc, addDoc, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
@@ -190,7 +190,7 @@ window.rejectVisit = async function(visitId){
 
 window.approveRedemption = async function(reqId, uid, cost){
   const code = await genUniqueCode();
-  const couponRef = await addDoc(collection(db, 'coupons'), { uid, code, creditsCost: cost, status: 'available', createdAt: serverTimestamp() });
+  const couponRef = await addDoc(collection(db, 'coupons'), { uid, code, creditsCost: cost, status: 'available', createdAt: serverTimestamp(), expiresAt: couponExpiryDate() });
   await updateDoc(doc(db, 'customers', uid), { credits: increment(-cost) });
   await updateDoc(doc(db, 'redemptionRequests', reqId), { status: 'approved', reviewedAt: serverTimestamp(), reviewedBy: staffUid, couponCode: code });
 
@@ -222,6 +222,7 @@ window.redeemCoupon = async function(){
     if (snap.empty) { msg.style.color = 'var(--err)'; msg.textContent = 'No coupon found with that code.'; return; }
     const d = snap.docs[0];
     if (d.data().status === 'redeemed') { msg.style.color = 'var(--err)'; msg.textContent = 'This coupon was already redeemed.'; return; }
+    if (isCouponExpired(d.data())) { msg.style.color = 'var(--err)'; msg.textContent = 'This coupon expired and can no longer be used.'; return; }
     await updateDoc(doc(db, 'coupons', d.id), { status: 'redeemed', redeemedAt: serverTimestamp(), redeemedBy: staffUid });
     msg.style.color = 'var(--ok)';
     msg.textContent = 'Marked redeemed.';

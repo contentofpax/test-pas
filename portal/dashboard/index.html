@@ -123,7 +123,7 @@ nav.sc{box-shadow:0 4px 24px rgba(0,0,0,.3)}
     <div class="geo-status" id="geoStatus"><div class="geo-dot"></div><span id="geoText">Getting ready...</span></div>
 
     <div class="msg err" id="claimErr"></div>
-    <div class="msg ok" id="claimOk">Thanks! Your claim is in for review — credits will appear once approved.</div>
+    <div class="msg ok" id="claimOk">Thanks! Your claim is in for review — we'll approve it within 24 hours and credits will appear here once approved.</div>
 
     <div class="fg"><label class="fl">What did you post?</label>
       <select class="fs" id="proofType" onchange="onProofTypeChange()">
@@ -146,7 +146,8 @@ nav.sc{box-shadow:0 4px 24px rgba(0,0,0,.3)}
   </div>
 
   <div class="card">
-    <h2 class="sectitle" style="margin-bottom:16px;font-size:22px">Your <em>coupons.</em></h2>
+    <h2 class="sectitle" style="margin-bottom:6px;font-size:22px">Your <em>coupons.</em></h2>
+    <p class="desc" style="margin-bottom:16px">Coupons are valid for 6 months from the day they're generated.</p>
     <div id="couponsList"><div class="empty">No coupons yet — redeem credits above to get one.</div></div>
   </div>
 
@@ -179,7 +180,7 @@ function toggleMenu(){const m=document.getElementById('mmenu');const h=document.
 </script>
 
 <script type="module">
-import { auth, db, storage, CAFE_LAT, CAFE_LNG, CAFE_RADIUS_METERS, MIN_REDEEM_CREDITS, creditsForProof, STAFF_PHONES, distanceMeters } from "/test-pas/portal/firebase-init.js";
+import { auth, db, storage, CAFE_LAT, CAFE_LNG, CAFE_RADIUS_METERS, MIN_REDEEM_CREDITS, creditsForProof, STAFF_PHONES, isCouponExpired, distanceMeters } from "/test-pas/portal/firebase-init.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { doc, getDoc, setDoc, collection, addDoc, query, where, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
@@ -273,9 +274,13 @@ async function loadCoupons(uid){
     list.innerHTML = '';
     snap.forEach((d) => {
       const c = d.data();
+      const expired = c.status === 'available' && isCouponExpired(c);
+      const badgeClass = c.status === 'redeemed' ? 'redeemed' : (expired ? 'rejected' : 'available');
+      const badgeText = c.status === 'redeemed' ? 'redeemed' : (expired ? 'expired' : 'available');
+      const expiryText = c.expiresAt ? ' · valid until ' + (c.expiresAt.toDate ? c.expiresAt.toDate() : new Date(c.expiresAt)).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
       const row = document.createElement('div');
       row.className = 'list-item';
-      row.innerHTML = '<div class="li-main"><div class="coupon-code">' + c.code + '</div><div class="li-sub">Show this to staff at the counter</div></div><span class="badge ' + (c.status === 'redeemed' ? 'redeemed' : 'available') + '">' + c.status + '</span>';
+      row.innerHTML = '<div class="li-main"><div class="coupon-code">' + c.code + '</div><div class="li-sub">Show this to staff at the counter' + expiryText + '</div></div><span class="badge ' + badgeClass + '">' + badgeText + '</span>';
       list.appendChild(row);
     });
   }, () => { list.innerHTML = '<div class="empty">Couldn’t load coupons right now.</div>'; });
